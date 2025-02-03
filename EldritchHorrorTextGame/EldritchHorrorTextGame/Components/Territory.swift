@@ -14,3 +14,22 @@ enum TerritoryType {
     
 }
 
+//struct for Place
+struct Place {
+    
+    let name: String
+    let type: TerritoryType
+    let monsters: [Monster]
+    
+    
+}
+
+//struct for Monsters
+struct Monster {
+    let name: String
+    var health: Int
+    let damage: Int
+    let brainDamage: Int
+    let damageModifier: Int
+    let brainModifier: Int
+}
