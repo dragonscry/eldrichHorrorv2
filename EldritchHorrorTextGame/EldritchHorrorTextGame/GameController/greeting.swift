@@ -19,6 +19,7 @@ let greetings = [
 
 func printHorribleGreeting() {
     
+    //TODO: make this as static fields
     let green = "\u{001B}[0;32m"
         let bold = "\u{001B}[1m"
         let underline = "\u{001B}[4m"
@@ -27,3 +28,5 @@ func printHorribleGreeting() {
     let randomIndex = Int.random(in: 0..<greetings.count)
     print("\(green)\(bold)\(underline)"+greetings[randomIndex]+"\(reset)")
 }
+
+
