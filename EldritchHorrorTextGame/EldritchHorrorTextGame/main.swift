@@ -9,6 +9,25 @@ import Foundation
 
 print("Start")
 
+printHorribleGreeting()
+
+var gameController = MainGameController()
+
+print("Select your Detective")
+let detectives = ["Idann", "Kai", "Lars"]
+for i in 0..<detectives.count {
+    print("\(i+1). \(detectives[i])")
+}
+
+let number = Int(readLine() ?? "0") ?? 0
+
+if number > 0 && number <= detectives.count {
+    gameController.detective = detectives[number - 1]
+}
+
+print("You select \(gameController.detective ?? "unknown")")
+
+
 //greetings
 
 //init players

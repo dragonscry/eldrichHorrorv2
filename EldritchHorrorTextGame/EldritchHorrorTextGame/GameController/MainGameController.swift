@@ -7,7 +7,8 @@
 
 class MainGameController {
     
-    var detective: Detective?
+    //Change to Detective
+    var detective: String?
     
     var round = 1
     

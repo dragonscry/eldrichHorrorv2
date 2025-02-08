@@ -13,11 +13,6 @@ class Actions {
     func rest() {
     }
     
-    //move to new place
-    func travel() {
-        
-    }
-    
     
     init(gameController: MainGameController) {
         self.gameController = gameController
