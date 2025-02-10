@@ -11,18 +11,31 @@ print("Start")
 
 printHorribleGreeting()
 
+print("")
+
 var gameController = MainGameController()
 
-print("Select your Detective")
+//Detectives from JSON to Detective structure
 let detectives = ["Idann", "Kai", "Lars"]
-for i in 0..<detectives.count {
-    print("\(i+1). \(detectives[i])")
-}
 
-let number = Int(readLine() ?? "0") ?? 0
+while gameController.detective == nil {
+    print("Select your Detective")
+    
+    for i in 0..<detectives.count {
+        print("\(i+1). \(detectives[i])")
+    }
+    
+    print("")
 
-if number > 0 && number <= detectives.count {
-    gameController.detective = detectives[number - 1]
+    let number = Int(readLine() ?? "0") ?? 0
+
+    if number > 0 && number <= detectives.count {
+        gameController.detective = detectives[number - 1]
+    } else {
+        print("Type correct number from the list")
+    }
+    
+    print("")
 }
 
 print("You select \(gameController.detective ?? "unknown")")
