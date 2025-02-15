@@ -15,10 +15,12 @@ print("")
 
 var gameController = MainGameController()
 
+var playerController : PlayerController
+
 //Detectives from JSON to Detective structure
 let detectives = ["Idann", "Kai", "Lars"]
 
-while gameController.detective == nil {
+while gameController.selectedDetective == false {
     print("Select your Detective")
     
     for i in 0..<detectives.count {
@@ -30,7 +32,7 @@ while gameController.detective == nil {
     let number = Int(readLine() ?? "0") ?? 0
 
     if number > 0 && number <= detectives.count {
-        gameController.detective = detectives[number - 1]
+        
     } else {
         print("Type correct number from the list")
     }

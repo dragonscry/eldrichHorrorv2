@@ -7,15 +7,10 @@
 
 class Actions {
     
-    var gameController: MainGameController
-    
     //detective rest and heal 1 hp and 1 sanity
     func rest() {
     }
     
-    
-    init(gameController: MainGameController) {
-        self.gameController = gameController
-    }
+    //
     
 }

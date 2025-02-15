@@ -7,10 +7,7 @@
 
 class MainGameController {
     
-    //Change to Detective
-    var detective: String?
-    
-    var round = 1
+    var selectedDetective = false
     
     
 }

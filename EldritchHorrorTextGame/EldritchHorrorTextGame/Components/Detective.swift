@@ -8,6 +8,7 @@
 struct Detective {
     let name: String
     let job: String
+    let description: String
     
     let health: Int
     let sanity: Int
@@ -18,9 +19,8 @@ struct Detective {
     let strenght: Int
     let will: Int
     
+    //placeHolder
     let initialPlace: String
-    
     let equipment: [String]
     
-    let description: String
 }
