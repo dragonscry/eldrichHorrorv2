@@ -22,3 +22,22 @@ func loadJSON<T: Codable>(from fileName: String, bundle: Bundle = .main) -> T? {
         return nil
     }
 }
+
+//TODO: needs to fix bug
+extension Bundle {
+    func decode<T: Decodable>(from fileName: String) -> T? {
+        guard let url = self.url(forResource: fileName, withExtension: nil) else {
+            print("❌ Failed to locate \(fileName) in bundle.")
+            return nil
+        }
+
+        do {
+            let data = try Data(contentsOf: url)
+            let decoder = JSONDecoder()
+            return try decoder.decode(T.self, from: data)
+        } catch {
+            print("❌ Error decoding \(fileName): \(error)")
+            return nil
+        }
+    }
+}

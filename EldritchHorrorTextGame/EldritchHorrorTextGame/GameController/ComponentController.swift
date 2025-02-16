@@ -5,9 +5,11 @@
 //  Created by Denys on 10.02.2025.
 //
 
+import Foundation
+
 class ComponentController {
     
-    let detectives: [String]
+    let detectives: [Detective]
     
     let myths: [String]
     
@@ -21,8 +23,8 @@ class ComponentController {
     
     let artifacts: [String]
     
-    init(detectives: [String], myths: [String], monsters: [String], bosses: [String], items: [String], spells: [String], artifacts: [String]) {
-        self.detectives = detectives
+    init(myths: [String], monsters: [String], bosses: [String], items: [String], spells: [String], artifacts: [String]) {
+        self.detectives = Bundle.main.decode(from: "detective") ?? []
         self.myths = myths
         self.monsters = monsters
         self.bosses = bosses

@@ -45,6 +45,7 @@ class PlayerController {
         self.tention = detective.tention
         self.strenght = detective.strenght
         self.will = detective.will
+        self.territory = detective.initialPlace
     }
     
 }

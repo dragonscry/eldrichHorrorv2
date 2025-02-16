@@ -1,0 +1,45 @@
+[
+    {
+        "name": "Eleanor Bishop",
+        "job": "Occult Investigator",
+        "description": "A seasoned detective who specializes in uncovering hidden truths about the eldritch horrors lurking in the shadows.",
+        "health": 6,
+        "sanity": 6,
+        "knowledge": 5,
+        "communication": 3,
+        "tention": 2,
+        "strenght": 2,
+        "will": 4,
+        "initialPlace": "University Library",
+        "equipment": ["Ancient Tome", "Silver Dagger"]
+    },
+    {
+        "name": "Raymond Carter",
+        "job": "Private Detective",
+        "description": "A sharp-witted detective known for his tenacity and relentless pursuit of the truth, even when it leads to unspeakable horrors.",
+        "health": 7,
+        "sanity": 5,
+        "knowledge": 4,
+        "communication": 4,
+        "tention": 3,
+        "strenght": 3,
+        "will": 2,
+        "initialPlace": "Downtown Office",
+        "equipment": ["Revolver", "Pocket Watch"]
+    },
+    {
+        "name": "Margaret Holloway",
+        "job": "Psychiatrist",
+        "description": "A brilliant doctor of the mind, drawn into the dark underbelly of the supernatural while treating patients tormented by otherworldly forces.",
+        "health": 5,
+        "sanity": 7,
+        "knowledge": 4,
+        "communication": 5,
+        "tention": 2,
+        "strenght": 2,
+        "will": 4,
+        "initialPlace": "Mental Asylum",
+        "equipment": ["Notebook", "Tranquilizers"]
+    }
+]
+

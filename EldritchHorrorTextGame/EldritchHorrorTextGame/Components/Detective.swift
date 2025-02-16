@@ -5,7 +5,7 @@
 //  Created by Denys on 01.02.2025.
 //
 
-struct Detective {
+struct Detective: Codable {
     let name: String
     let job: String
     let description: String

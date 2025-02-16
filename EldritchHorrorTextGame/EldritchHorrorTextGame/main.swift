@@ -15,24 +15,25 @@ print("")
 
 var gameController = MainGameController()
 
-var playerController : PlayerController
+var playerController : PlayerController?
 
 //Detectives from JSON to Detective structure
-let detectives = ["Idann", "Kai", "Lars"]
+var componentController = ComponentController(myths: [""], monsters: [""], bosses: [""], items: [""], spells: [""], artifacts: [""])
 
 while gameController.selectedDetective == false {
     print("Select your Detective")
     
-    for i in 0..<detectives.count {
-        print("\(i+1). \(detectives[i])")
+    for i in 0..<componentController.detectives.count {
+        print("\(i+1). \(componentController.detectives[i].name)")
     }
     
     print("")
 
     let number = Int(readLine() ?? "0") ?? 0
 
-    if number > 0 && number <= detectives.count {
-        
+    if number > 0 && number <= componentController.detectives.count {
+        playerController = PlayerController(detective: componentController.detectives[number])
+        gameController.selectedDetective = true
     } else {
         print("Type correct number from the list")
     }
@@ -40,7 +41,8 @@ while gameController.selectedDetective == false {
     print("")
 }
 
-print("You select \(gameController.detective ?? "unknown")")
+//TODO: need fix initialization of player controller
+print("You select \(playerController?.detective.name ?? "unknown")")
 
 
 //greetings
