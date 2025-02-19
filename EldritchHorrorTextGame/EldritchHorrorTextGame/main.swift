@@ -32,7 +32,7 @@ while gameController.selectedDetective == false {
     let number = Int(readLine() ?? "0") ?? 0
 
     if number > 0 && number <= componentController.detectives.count {
-        playerController = PlayerController(detective: componentController.detectives[number])
+        playerController = PlayerController(detective: componentController.detectives[number-1])
         gameController.selectedDetective = true
     } else {
         print("Type correct number from the list")
