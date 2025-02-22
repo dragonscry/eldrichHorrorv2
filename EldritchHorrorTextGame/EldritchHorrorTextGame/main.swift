@@ -44,6 +44,25 @@ while gameController.selectedDetective == false {
 //TODO: need fix initialization of player controller
 print("You select \(playerController?.detective.name ?? "unknown")")
 
+while gameController.roundCounter < 11 {
+    
+    //first action
+    print("Select territory where you want to go?")
+    
+    //second action
+    print("Select action")
+    
+    //third action
+    print("Encounter!")
+    
+    //myth action
+    print("MYTH")
+    
+}
+
+print("Time to fight with BOSS!!!")
+
+
 
 //greetings
 
