@@ -11,6 +11,19 @@ class Actions {
     func rest() {
     }
     
-    //
+    //buy items from city
+    func buyItems() {
+        
+    }
+    
+    //prepare resource
+    func prepareResource() {
+        
+    }
+    
+    //prepare concetracion
+    func prepareConcentration() {
+        
+    }
     
 }

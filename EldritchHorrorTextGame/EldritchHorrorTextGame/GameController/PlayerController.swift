@@ -48,4 +48,7 @@ class PlayerController {
         self.territory = detective.initialPlace
     }
     
+    var concetration = 0
+    var resource = 0
+    
 }

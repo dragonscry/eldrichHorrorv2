@@ -9,5 +9,8 @@ class MainGameController {
     
     var selectedDetective = false
     
+    var portalChance = 20
+    
+    var MonsterChance = 10
     
 }

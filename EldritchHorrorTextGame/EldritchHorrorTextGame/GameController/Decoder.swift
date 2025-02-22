@@ -32,18 +32,15 @@ func loadJSON<T: Codable>(from fileName: String, bundle: Bundle = .main) -> T? {
 extension Bundle {
     func decode<T: Decodable>(from fileName: String) -> T? {
         
-        if let path = Bundle.main.path(forResource: "detective", ofType: "json") {
-            print("✅ File found at: \(path)")
-        } else {
-            print("❌ File not found in bundle.")
-        }
-        let fileUrL = URL(fileURLWithPath: "/Users/denys/Desktop/games/eldrichHorrorv2/EldritchHorrorTextGame/EldritchHorrorTextGame/detective.json")
-
         
-//        guard let fileUrl = self.url(forResource: fileName, withExtension: nil) else {
-//            print("❌ Failed to locate \(fileName) in bundle.")
-//            return nil
+        //UNCOMMENT WHEN WILL BE GOOD
+//        if let path = Bundle.main.path(forResource: "detective", ofType: "json") {
+//            print("✅ File found at: \(path)")
+//        } else {
+//            print("❌ File not found in bundle.")
 //        }
+        
+        let fileUrL = Urls.returnUrl(for: fileName)
 
         do {
             let data = try Data(contentsOf: fileUrL)
