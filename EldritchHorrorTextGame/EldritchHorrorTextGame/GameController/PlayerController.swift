@@ -32,7 +32,7 @@ class PlayerController {
     var will: Int
     
     //placeholder for territoty
-    var territory: String
+    var territory: Place
     
     init(detective: Detective) {
         self.detective = detective
@@ -45,7 +45,7 @@ class PlayerController {
         self.tention = detective.tention
         self.strenght = detective.strenght
         self.will = detective.will
-        self.territory = detective.initialPlace
+        self.territory = Place(name: detective.initialPlace, type: .city, monsters: [])
     }
     
     var concetration = 0

@@ -10,11 +10,11 @@ import Foundation
 //struct for Monsters
 struct Monster {
     let name: String
-    var health: Int
-    let damage: Int
-    let brainDamage: Int
-    let damageModifier: Int
-    let brainModifier: Int
+//    var health: Int
+//    let damage: Int
+//    let brainDamage: Int
+//    let damageModifier: Int
+//    let brainModifier: Int
 }
 
 

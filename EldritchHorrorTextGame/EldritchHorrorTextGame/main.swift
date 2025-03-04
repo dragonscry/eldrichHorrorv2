@@ -17,9 +17,12 @@ var gameController = MainGameController()
 
 var playerController : PlayerController?
 
+var territories : [Place] = []
+
 //Detectives from JSON to Detective structure
 var componentController = ComponentController(myths: [""], monsters: [""], bosses: [""], items: [""], spells: [""], artifacts: [""])
 
+//Select Detective phase
 while gameController.selectedDetective == false {
     print("Select your Detective")
     
@@ -48,6 +51,31 @@ while gameController.roundCounter < 11 {
     
     //first action
     print("Select territory where you want to go?")
+    
+    territories = gameController.createPlaces()
+    
+    while !gameController.playerSelectedTerritory {
+        for i in 0..<territories.count {
+            print("\n \(i+1). \(territories[i].name) - \(territories[i].type)")
+            print(territories[i].portal ? "🔵 A strange portal shimmers in the air..." : "❌ No portals here.")
+            print(!territories[i].monsters.isEmpty ? "👹 A terrifying monster lurks in the shadows!" : "🌿 The place is eerily quiet.")
+        }
+        
+        print("")
+
+        let number = Int(readLine() ?? "0") ?? 0
+        
+        if number > 0 && number <= territories.count {
+            playerController?.territory = territories[number]
+            gameController.playerSelectedTerritory = true
+        } else {
+            print("Type correct number from the list")
+        }
+        
+        print("You selected \(playerController?.territory.name ?? "unknown")")
+    }
+    
+    
     
     //second action
     print("Select action")
