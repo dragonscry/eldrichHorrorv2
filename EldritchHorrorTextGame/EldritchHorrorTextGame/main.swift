@@ -7,7 +7,7 @@
 
 import Foundation
 
-print("Start")
+print("Game Started")
 
 printHorribleGreeting()
 
@@ -20,11 +20,11 @@ var playerController : PlayerController?
 var territories : [Place] = []
 
 //Detectives from JSON to Detective structure
-var componentController = ComponentController(myths: [""], monsters: [""], bosses: [""], items: [""], spells: [""], artifacts: [""])
+var componentController = ComponentController(myths: [""], monsters: [""], items: [""], artifacts: [""])
 
 //Select Detective phase
 while gameController.selectedDetective == false {
-    print("Select your Detective")
+    printTextWithDelay("Select your Detective")
     
     for i in 0..<componentController.detectives.count {
         print("\(i+1). \(componentController.detectives[i].name)")
@@ -72,13 +72,11 @@ while gameController.roundCounter < 11 {
             print("Type correct number from the list")
         }
         
-        print("You selected \(playerController?.territory.name ?? "unknown")")
+        print("You go to \(playerController?.territory.name ?? "unknown")")
     }
     
-    
-    
     //second action
-    print("Select action")
+    print("Select detective action")
     
     //third action
     print("Encounter!")

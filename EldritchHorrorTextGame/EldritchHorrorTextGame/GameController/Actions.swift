@@ -5,25 +5,28 @@
 //  Created by Denys on 05.02.2025.
 //
 
-class Actions {
+protocol Action {
+    var name: String { get }
+    var description: String { get }
     
-    //detective rest and heal 1 hp and 1 sanity
-    func rest() {
+    func execute(for detective: Detective)
+}
+
+struct RestAction: Action {
+    let name = "Rest"
+    var description = "Detective Rest and restore 1 health and 1 sanity"
+    
+    
+    func execute(for detective: Detective) {
+        print("\(detective.name) rests and regains health and sanity.")
     }
+}
+
+struct BuyItemAction: Action {
+    let name = "Buy Item"
+    var description = "Player Buys item from shop"
     
-    //buy items from city
-    func buyItems() {
-        
+    func execute(for detective: Detective) {
+        print("\(detective.name) buys an item.")
     }
-    
-    //prepare resource
-    func prepareResource() {
-        
-    }
-    
-    //prepare concetracion
-    func prepareConcentration() {
-        
-    }
-    
 }

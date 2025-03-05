@@ -31,6 +31,8 @@ class PlayerController {
     var strenght: Int
     var will: Int
     
+    var successfullResults = [5,6]
+    
     //placeholder for territoty
     var territory: Place
     
