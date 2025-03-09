@@ -45,4 +45,24 @@ class MainGameController {
 
         return places
     }
+    
+    func selectAction(for detective: Detective) {
+        let availableActions = detective.getAvailableActions()
+
+        print("\nChoose an action:")
+        for (index, action) in availableActions.enumerated() {
+            print("\(index + 1). \(action.name)")
+        }
+
+        print("\nEnter the number of your action:")
+        
+        if let input = readLine(), let choice = Int(input),
+           choice > 0, choice <= availableActions.count {
+            let selectedAction = availableActions[choice - 1]
+            selectedAction.perform(for: detective)
+        } else {
+            print("Invalid choice. Try again.")
+            selectAction(for: detective)
+        }
+    }
 }

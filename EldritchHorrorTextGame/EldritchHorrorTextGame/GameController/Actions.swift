@@ -4,16 +4,34 @@
 //
 //  Created by Denys on 05.02.2025.
 //
+class ActionManager {
+    static let shared = ActionManager()
+    
+    //private let uniqueActions: [String: Action] = []
+    
+//    func getUniqueAction(for detective: Detective) -> Action {
+//        //return uniqueActions[detective.name] ?? RestAction() // Default action
+//    }
+}
+
+enum ActionsType {
+    case heroAction
+    case encaunter
+    case combat
+    case all
+}
 
 protocol Action {
     var name: String { get }
     var description: String { get }
+    var typeAction: ActionsType { get }
     
     func execute(for detective: Detective)
 }
 
 struct RestAction: Action {
-    let name = "Rest"
+    var typeAction = ActionsType.heroAction
+    var name = "Rest"
     var description = "Detective Rest and restore 1 health and 1 sanity"
     
     
@@ -23,7 +41,8 @@ struct RestAction: Action {
 }
 
 struct BuyItemAction: Action {
-    let name = "Buy Item"
+    var typeAction: ActionsType = .heroAction
+    var name = "Buy Item"
     var description = "Player Buys item from shop"
     
     func execute(for detective: Detective) {

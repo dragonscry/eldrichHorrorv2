@@ -23,7 +23,6 @@ class PlayerController {
     //placeholders for items and artifacts
     var items = [String]()
     var artifacts = [String]()
-    var stances = [String]()
     
     var knowledge: Int
     var communication: Int

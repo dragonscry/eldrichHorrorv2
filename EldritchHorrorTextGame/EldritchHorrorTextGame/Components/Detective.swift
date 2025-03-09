@@ -23,4 +23,7 @@ struct Detective: Codable {
     let initialPlace: String
     let equipment: [String]
     
+    
+    
+    
 }
