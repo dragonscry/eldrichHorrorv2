@@ -9,13 +9,15 @@ import Foundation
 
 print("Game Started")
 
+print("")
+
 printHorribleGreeting()
 
 print("")
 
 var gameController = MainGameController()
 
-var playerController : PlayerController?
+var playerController = PlayerController()
 
 var territories : [Place] = []
 
@@ -23,7 +25,7 @@ var territories : [Place] = []
 var componentController = ComponentController(myths: [""], monsters: [""], items: [""], artifacts: [""])
 
 //Select Detective phase
-while gameController.selectedDetective == false {
+while playerController.detective == nil {
     printTextWithDelay("Select your Detective")
     
     for i in 0..<componentController.detectives.count {
@@ -35,8 +37,7 @@ while gameController.selectedDetective == false {
     let number = Int(readLine() ?? "0") ?? 0
 
     if number > 0 && number <= componentController.detectives.count {
-        playerController = PlayerController(detective: componentController.detectives[number-1])
-        gameController.selectedDetective = true
+        playerController.updateWithDetective(detective: componentController.detectives[number-1])
     } else {
         print("Type correct number from the list")
     }
@@ -45,7 +46,7 @@ while gameController.selectedDetective == false {
 }
 
 //TODO: need fix initialization of player controller
-print("You select \(playerController?.detective.name ?? "unknown")")
+print("You select \(playerController.detective?.name ?? "unknown")")
 
 while gameController.roundCounter < 11 {
     
@@ -66,13 +67,13 @@ while gameController.roundCounter < 11 {
         let number = Int(readLine() ?? "0") ?? 0
         
         if number > 0 && number <= territories.count {
-            playerController?.territory = territories[number]
+            playerController.territory = territories[number - 1]
             gameController.playerSelectedTerritory = true
         } else {
             print("Type correct number from the list")
         }
         
-        print("You go to \(playerController?.territory.name ?? "unknown")")
+        print("You go to \(playerController.territory?.name ?? "unknown")")
     }
     
     //second action

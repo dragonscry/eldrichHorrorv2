@@ -7,8 +7,6 @@
 
 class MainGameController {
     
-    var selectedDetective = false
-    
     var playerSelectedTerritory = false
     
     // how many percent portal appear in territory
@@ -46,8 +44,8 @@ class MainGameController {
         return places
     }
     
-    func selectAction(for detective: Detective) {
-        let availableActions = detective.getAvailableActions()
+    func selectAction(for player: PlayerController) {
+        let availableActions = player.actions
 
         print("\nChoose an action:")
         for (index, action) in availableActions.enumerated() {
@@ -59,10 +57,10 @@ class MainGameController {
         if let input = readLine(), let choice = Int(input),
            choice > 0, choice <= availableActions.count {
             let selectedAction = availableActions[choice - 1]
-            selectedAction.perform(for: detective)
+            selectedAction.execute(for: player)
         } else {
             print("Invalid choice. Try again.")
-            selectAction(for: detective)
+            selectAction(for: player)
         }
     }
 }

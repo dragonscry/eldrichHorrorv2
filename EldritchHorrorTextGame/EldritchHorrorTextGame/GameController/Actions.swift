@@ -26,7 +26,7 @@ protocol Action {
     var description: String { get }
     var typeAction: ActionsType { get }
     
-    func execute(for detective: Detective)
+    func execute(for player: PlayerController)
 }
 
 struct RestAction: Action {
@@ -35,8 +35,8 @@ struct RestAction: Action {
     var description = "Detective Rest and restore 1 health and 1 sanity"
     
     
-    func execute(for detective: Detective) {
-        print("\(detective.name) rests and regains health and sanity.")
+    func execute(for player: PlayerController) {
+        print("\(player.detective?.name ?? "unknown") rests and regains health and sanity.")
     }
 }
 
@@ -45,7 +45,7 @@ struct BuyItemAction: Action {
     var name = "Buy Item"
     var description = "Player Buys item from shop"
     
-    func execute(for detective: Detective) {
-        print("\(detective.name) buys an item.")
+    func execute(for player: PlayerController) {
+        print("\(player.detective?.name ?? "unknown") buys an item.")
     }
 }

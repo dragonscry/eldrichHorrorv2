@@ -24,6 +24,4 @@ struct Detective: Codable {
     let equipment: [String]
     
     
-    
-    
 }

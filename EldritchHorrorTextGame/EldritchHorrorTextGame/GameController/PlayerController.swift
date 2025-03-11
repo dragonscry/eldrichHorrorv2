@@ -10,32 +10,35 @@ import Foundation
 class PlayerController {
     
     //Change to Detective
-    var detective: Detective
+    var detective: Detective? = nil
     
     //takes from detective
-    let maxHealth: Int
-    let maxSanity: Int
+    var maxHealth = 0
+    var maxSanity = 0
     
     //takes from detective when init
-    var currentHealth: Int
-    var currentSanity: Int
+    var currentHealth = 0
+    var currentSanity = 0
     
     //placeholders for items and artifacts
     var items = [String]()
-    var artifacts = [String]()
+    //var artifacts = [String]()
     
-    var knowledge: Int
-    var communication: Int
-    var tention: Int
-    var strenght: Int
-    var will: Int
+    var knowledge = 0
+    var communication = 0
+    var tention = 0
+    var strenght = 0
+    var will = 0
     
     var successfullResults = [5,6]
     
     //placeholder for territoty
-    var territory: Place
+    var territory: Place? = nil
     
-    init(detective: Detective) {
+    var concetration = 0
+    var resource = 0
+    
+    func updateWithDetective(detective: Detective) {
         self.detective = detective
         self.maxHealth = detective.health
         self.maxSanity = detective.sanity
@@ -49,7 +52,6 @@ class PlayerController {
         self.territory = Place(name: detective.initialPlace, type: .city, monsters: [])
     }
     
-    var concetration = 0
-    var resource = 0
+    var actions = [Action]()
     
 }
