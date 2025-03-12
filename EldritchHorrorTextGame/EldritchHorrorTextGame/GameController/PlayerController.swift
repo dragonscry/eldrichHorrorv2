@@ -52,6 +52,15 @@ class PlayerController {
         self.territory = Place(name: detective.initialPlace, type: .city, monsters: [])
     }
     
+    func getAvailableActions() -> [Action] {
+            var actions: [Action] = [
+                RestAction(),
+                BuyItemAction(),
+            ]
+            
+            return actions
+        }
+    
     var actions = [Action]()
     
 }

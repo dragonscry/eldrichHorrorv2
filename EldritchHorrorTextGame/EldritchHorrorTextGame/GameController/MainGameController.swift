@@ -45,7 +45,7 @@ class MainGameController {
     }
     
     func selectAction(for player: PlayerController) {
-        let availableActions = player.actions
+        let availableActions = player.getAvailableActions()
 
         print("\nChoose an action:")
         for (index, action) in availableActions.enumerated() {
@@ -63,4 +63,8 @@ class MainGameController {
             selectAction(for: player)
         }
     }
+    
+    func combat(){}
+    
+    func encounter(){}
 }

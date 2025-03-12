@@ -16,7 +16,7 @@ func printTextWithDelay(_ text: String, delay: TimeInterval = 0.5) {
     print() // Move to the next line after completion
 }
 
-func rollDice() {
+func rollDice() -> Int {
     print("Rolling dice 🎲", terminator: "")
     for _ in 1...3 {
         print(".", terminator: "")
@@ -29,6 +29,9 @@ func rollDice() {
     let finalRoll = Int.random(in: 1...6)
     print("You rolled a \(finalRoll)!", terminator: "")
     fflush(stdout)
+    return finalRoll
 }
 
-
+func rollManyDice(times: Int) -> [Int] {
+    //TODO: need a func where amount of Dice is equal of times
+}

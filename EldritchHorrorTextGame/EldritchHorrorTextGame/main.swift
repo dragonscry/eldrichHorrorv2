@@ -77,11 +77,14 @@ while gameController.roundCounter < 11 {
     }
     
     //second action
-    print("Select detective action")
+    gameController.selectAction(for: playerController)
     
     //third action
-    print("Encounter!")
-    
+    if playerController.territory?.monsters.count ?? 0 > 0 {
+        gameController.combat()
+    } else {
+        gameController.encounter()
+    }
     //myth action
     print("MYTH")
     
