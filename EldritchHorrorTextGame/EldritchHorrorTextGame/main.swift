@@ -9,6 +9,7 @@ import Foundation
 
 print("Game Started")
 
+rollManyDice(times: 5)
 print("")
 
 printHorribleGreeting()
@@ -45,7 +46,7 @@ while playerController.detective == nil {
     print("")
 }
 
-//TODO: need fix initialization of player controller
+
 print("You select \(playerController.detective?.name ?? "unknown")")
 
 while gameController.roundCounter < 11 {

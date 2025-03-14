@@ -17,21 +17,25 @@ func printTextWithDelay(_ text: String, delay: TimeInterval = 0.5) {
 }
 
 func rollDice() -> Int {
-    print("Rolling dice 🎲", terminator: "")
+    let finalRoll = Int.random(in: 1...6)
+    return finalRoll
+}
+
+func rollManyDice(times: Int) -> [Int] {
+    //TODO: need a func where amount of Dice is equal of times
+
+    print("Rolling dice " + String(repeating: "🎲", count: times), terminator: "")
     for _ in 1...3 {
         print(".", terminator: "")
         fflush(stdout)
         usleep(500_000) // Delay for a short time to simulate rolling
     }
     print()
+    var tempRolls: [Int] = []
+    for _ in 1...times {
+        tempRolls.append(rollDice())
+    }
     
-    // Final roll
-    let finalRoll = Int.random(in: 1...6)
-    print("You rolled a \(finalRoll)!", terminator: "")
-    fflush(stdout)
-    return finalRoll
-}
+    return tempRolls
 
-func rollManyDice(times: Int) -> [Int] {
-    //TODO: need a func where amount of Dice is equal of times
 }

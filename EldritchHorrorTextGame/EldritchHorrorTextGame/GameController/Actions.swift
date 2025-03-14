@@ -7,11 +7,13 @@
 class ActionManager {
     static let shared = ActionManager()
     
-    //private let uniqueActions: [String: Action] = []
+    //TODO: needs to provide action for unique actions or item action
+    private let actionMap: [String: Action] = [:]
     
-//    func getUniqueAction(for detective: Detective) -> Action {
-//        //return uniqueActions[detective.name] ?? RestAction() // Default action
-//    }
+    func getAction(for key: String?) -> Action? {
+        guard let key = key else { return nil }
+        return actionMap[key]
+    }
 }
 
 enum ActionsType {
