@@ -9,9 +9,6 @@ import Foundation
 
 print("Game Started")
 
-rollManyDice(times: 5)
-print("")
-
 printHorribleGreeting()
 
 print("")
@@ -23,7 +20,8 @@ var playerController = PlayerController()
 var territories : [Place] = []
 
 //Detectives from JSON to Detective structure
-var componentController = ComponentController(myths: [""], monsters: [""], items: [""], artifacts: [""])
+var componentController = ComponentController(myths: [""], monsters: [""])
+componentController.downloadItems()
 
 //Select Detective phase
 while playerController.detective == nil {
@@ -54,6 +52,7 @@ while gameController.roundCounter < 11 {
     //first action
     print("Select territory where you want to go?")
     
+    //TODO: now its placeholder
     territories = gameController.createPlaces()
     
     while !gameController.playerSelectedTerritory {

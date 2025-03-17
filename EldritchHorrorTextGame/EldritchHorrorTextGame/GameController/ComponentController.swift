@@ -17,20 +17,44 @@ class ComponentController {
     
 //    let bosses: [String]
     
-    let items: [String]
+    let rawItems: [RawItem]
+    
+    var items: [Item] = []
     
 //    let spells: [String]
     
-    let artifacts: [String]
+//    let artifacts: [String]
     
-    init(myths: [String], monsters: [String], items: [String], artifacts: [String]) {
+    init(myths: [String], monsters: [String]) {
         self.detectives = Bundle.main.decode(from: "detective") ?? []
         self.myths = myths
         self.monsters = monsters
         //self.bosses = bosses
-        self.items = items
+        self.rawItems = Bundle.main.decode(from: "items") ?? []
 //        self.spells = spells
-        self.artifacts = artifacts
+       // self.artifacts = artifacts
+    }
+    
+    func downloadItems() {
+        for rawItem in rawItems {
+            var item = Item(
+                name: rawItem.name,
+                description: rawItem.description,
+                type: rawItem.type,
+                cost: rawItem.cost,
+                actionKey: rawItem.actionKey,
+                statBoosts: rawItem.statBoosts,
+                phaseUsage: GamePhase(rawValue: rawItem.phaseUsage ?? ""),
+                isSingleUse: rawItem.isSingleUse
+            )
+            
+            // Map action key to action
+            if let actionKey = rawItem.actionKey {
+                item.action = ActionManager.shared.getAction(for: actionKey)
+            }
+            
+            items.append(item)
+        }
     }
     
 }

@@ -21,8 +21,10 @@ class PlayerController {
     var currentSanity = 0
     
     //placeholders for items and artifacts
-    var items = [String]()
+    var items = [Item]()
     //var artifacts = [String]()
+    
+    var allItemsForGame = [Item]()
     
     var knowledge = 0
     var communication = 0
@@ -51,6 +53,13 @@ class PlayerController {
         self.will = detective.will
         self.territory = Place(name: detective.initialPlace, type: .city, monsters: [])
     }
+    
+    func updateWithItems(items: [Item]) {
+        self.items = items
+    }
+    
+    
+    var currentResults = [Int]()
     
     func getAvailableActions() -> [Action] {
             var actions: [Action] = [

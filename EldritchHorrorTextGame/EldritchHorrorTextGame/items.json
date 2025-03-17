@@ -1,0 +1,37 @@
+[
+    {
+        "name": "Healing Potion",
+        "description": "Restores 5 health points.",
+        "type": "consumable",
+        "cost": 10,
+        "actionKey": "healAction",
+        "statBoosts": {
+            "health": 5
+        },
+        "phaseUsage": "hero",
+        "isSingleUse": true
+    },
+    {
+        "name": "Strength Elixir",
+        "description": "Boosts strength in combat.",
+        "type": "consumable",
+        "cost": 20,
+        "actionKey": "strengthBoostAction",
+        "statBoosts": {
+            "strength": 2
+        },
+        "phaseUsage": "combat",
+        "isSingleUse": false
+    },
+    {
+        "name": "Magic Scroll",
+        "description": "Grants the ability to see hidden enemies.",
+        "type": "consumable",
+        "cost": 15,
+        "actionKey": "seeHiddenEnemiesAction",
+        "statBoosts": null,
+        "phaseUsage": "all",
+        "isSingleUse": false
+    }
+]
+

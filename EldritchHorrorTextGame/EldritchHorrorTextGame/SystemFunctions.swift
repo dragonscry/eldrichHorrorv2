@@ -37,5 +37,24 @@ func rollManyDice(times: Int) -> [Int] {
     }
     
     return tempRolls
+}
 
+func getSuccessfullResultsCount(from rolls: [Int], results: [Int]) -> Int {
+    print("RESULTS: \(rolls)")
+    
+    var tempResult = 0
+    
+    for roll in rolls {
+        if results.contains(roll) {
+            tempResult += 1
+        }
+    }
+    return tempResult
+}
+
+func checkStats(stat: Int) -> (Bool, Int) {
+    var results = rollManyDice(times: stat)
+    
+    
+    return (true, 1)
 }

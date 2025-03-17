@@ -9,7 +9,7 @@ import Foundation
 
 struct EncounterTerritory {
     let story: String
-    let testCharacterist: String
+    let testStat: String
     let difficulty: Int
     let successText: String
     let failureText: String
