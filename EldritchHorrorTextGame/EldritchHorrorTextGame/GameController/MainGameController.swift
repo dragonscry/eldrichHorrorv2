@@ -5,6 +5,11 @@
 //  Created by Denys on 03.02.2025.
 //
 
+
+enum GamePhase: String, Codable {
+    case hero, encounter, combat, all
+}
+
 class MainGameController {
     
     var playerSelectedTerritory = false
@@ -17,6 +22,8 @@ class MainGameController {
     
     //what is round now
     var roundCounter = 1
+    
+    var gamePhase: GamePhase = .hero
     
     
     func createPlaces() -> [Place] {

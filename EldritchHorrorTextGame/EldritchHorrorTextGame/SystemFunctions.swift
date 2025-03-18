@@ -39,7 +39,7 @@ func rollManyDice(times: Int) -> [Int] {
     return tempRolls
 }
 
-func getSuccessfullResultsCount(from rolls: [Int], results: [Int]) -> Int {
+func getSuccessfullResultsCount(from rolls: [Int], playerSuccessfullResults results: [Int]) -> Int {
     print("RESULTS: \(rolls)")
     
     var tempResult = 0
@@ -52,9 +52,14 @@ func getSuccessfullResultsCount(from rolls: [Int], results: [Int]) -> Int {
     return tempResult
 }
 
-func checkStats(stat: Int) -> (Bool, Int) {
-    var results = rollManyDice(times: stat)
+func checkStats(stat: Int, for player: [Int]) -> (Bool, Int) {
+    let results = rollManyDice(times: stat)
     
+    let successfullResults = getSuccessfullResultsCount(from: results, playerSuccessfullResults: player)
     
-    return (true, 1)
+    if successfullResults > 0 {
+        return (true, successfullResults)
+    } else {
+        return (false, 0)
+    }
 }

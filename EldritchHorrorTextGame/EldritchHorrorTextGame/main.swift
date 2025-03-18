@@ -22,23 +22,38 @@ var territories : [Place] = []
 //Detectives from JSON to Detective structure
 var componentController = ComponentController(myths: [""], monsters: [""])
 componentController.downloadItems()
+playerController.updateWithItems(items: componentController.items)
 
 //Select Detective phase
 while playerController.detective == nil {
-    printTextWithDelay("Select your Detective")
-    
+    printTextWithDelay("Select your Detective (or type 'info <number>' to get details)")
+
     for i in 0..<componentController.detectives.count {
-        print("\(i+1). \(componentController.detectives[i].name)")
+        print("\(i + 1). \(componentController.detectives[i].name)")
     }
     
     print("")
 
-    let number = Int(readLine() ?? "0") ?? 0
-
-    if number > 0 && number <= componentController.detectives.count {
-        playerController.updateWithDetective(detective: componentController.detectives[number-1])
+    // Read user input
+    guard let input = readLine()?.trimmingCharacters(in: .whitespacesAndNewlines), !input.isEmpty else {
+        print("Please enter a valid input.")
+        continue
+    }
+    
+    // Split input into components
+    let components = input.split(separator: " ", maxSplits: 1, omittingEmptySubsequences: true)
+    
+    if components.count == 2, components[0].lowercased() == "info", let number = Int(components[1]), number > 0, number <= componentController.detectives.count {
+        // Show detective info
+        let selectedDetective = componentController.detectives[number - 1]
+        print("Name: \(selectedDetective.name)")
+        print("Description: \(selectedDetective.description)")
+        print("")
+    } else if let number = Int(input), number > 0, number <= componentController.detectives.count {
+        // Select detective
+        playerController.updateWithDetective(detective: componentController.detectives[number - 1])
     } else {
-        print("Type correct number from the list")
+        print("Invalid input. Type 'info <number>' to get details or select a detective by typing its number.")
     }
     
     print("")
@@ -73,8 +88,9 @@ while gameController.roundCounter < 11 {
             print("Type correct number from the list")
         }
         
-        print("You go to \(playerController.territory?.name ?? "unknown")")
     }
+    
+    print("You go to \(playerController.territory?.name ?? "unknown")")
     
     //second action
     gameController.selectAction(for: playerController)

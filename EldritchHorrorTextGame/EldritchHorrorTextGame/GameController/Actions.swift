@@ -14,10 +14,13 @@ class ActionManager {
         guard let key = key else { return nil }
         return actionMap[key]
     }
-}
-
-enum GamePhase: String, Codable {
-    case hero, encounter, combat, all
+    
+    let detectiveActions:[Action] = [
+        RestAction(),
+        BuyItemAction(),
+        PrepareResource(),
+        PrepareConcetration()
+    ]
 }
 
 protocol Action {
@@ -46,14 +49,14 @@ struct BuyItemAction: Action {
     
     func execute(for player: PlayerController) {
         
-        var market = player.items.shuffled().prefix(4)
+        var market = player.allItemsForGame.shuffled().prefix(4)
         
-        let successResults = checkStats(stat: player.communication)
+        let successResults = checkStats(stat: player.communication, for: player.successfullResults)
         
-        print("You have \(successResults) points to use for buying an item.\n")
+        print("You have \(successResults.0) points to use for buying an item.\n")
         
         for (index, item) in market.enumerated() {
-            print("\(index + 1). \(item)")
+            print("\(index + 1). \(item.name) \(item.cost)")
         }
         
         

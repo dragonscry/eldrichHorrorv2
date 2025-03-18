@@ -55,21 +55,26 @@ class PlayerController {
     }
     
     func updateWithItems(items: [Item]) {
-        self.items = items
+        self.allItemsForGame = items
     }
     
     
     var currentResults = [Int]()
     
     func getAvailableActions() -> [Action] {
-            var actions: [Action] = [
-                RestAction(),
-                BuyItemAction(),
-            ]
-            
-            return actions
+        ActionManager.shared.detectiveActions
         }
     
     var actions = [Action]()
+    
+    func getItemsWithActions() -> [Item] {
+        var tempActions: [Item] = []
+        for item in items {
+            if item.action != nil && !item.usedThisRound{
+                tempActions.append(item)
+            }
+        }
+        return tempActions
+    }
     
 }
