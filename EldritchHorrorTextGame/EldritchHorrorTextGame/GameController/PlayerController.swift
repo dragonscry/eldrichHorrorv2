@@ -58,23 +58,59 @@ class PlayerController {
         self.allItemsForGame = items
     }
     
-    
     var currentResults = [Int]()
     
     func getAvailableActions() -> [Action] {
         ActionManager.shared.detectiveActions
-        }
+    }
     
     var actions = [Action]()
     
-    func getItemsWithActions() -> [Item] {
+    func getItemsWithActions(gamePhase: GamePhase) -> [Item] {
         var tempActions: [Item] = []
-        for item in items {
-            if item.action != nil && !item.usedThisRound{
+        for item in allItemsForGame {
+            print(item.phaseUsage ?? "NO PHASE USAGE")
+            if item.action != nil && !item.usedThisRound && item.action?.typeAction == gamePhase{
                 tempActions.append(item)
             }
         }
         return tempActions
+    }
+    
+    func selectItemAction(for items: [Item]) {
+        // Display items with actions
+        print("\nSelect an item to use:")
+        for (index, item) in items.enumerated() {
+            print("\(index + 1). \(item.name) - \(item.action?.name ?? "No action")")
+        }
+        
+        // Read user input
+        print("\nEnter the number of the item to use:")
+        if let input = readLine(), let choice = Int(input),
+           choice > 0, choice <= items.count {
+            
+            let selectedItem = items[choice - 1]
+            
+            if let itemIndex = self.allItemsForGame.firstIndex(where: { $0.name == selectedItem.name }) {
+                
+                // Execute item action
+                self.allItemsForGame[itemIndex].action?.execute(for: self)
+                
+                // Handle single-use items
+                if self.allItemsForGame[itemIndex].isSingleUse {
+                    self.allItemsForGame.remove(at: itemIndex)
+                    print("\(selectedItem.name) has been used and removed from your inventory.")
+                    print("THERE IS ALL PLAYER ITEMS: \(self.items)")
+                } else {
+                    self.allItemsForGame[itemIndex].usedThisRound = true
+                    print("\(selectedItem.name) has been used this round.")
+                }
+            }
+            
+        } else {
+            print("Invalid choice. Try again.")
+            selectItemAction(for: items)  // Retry on invalid input
+        }
     }
     
 }
