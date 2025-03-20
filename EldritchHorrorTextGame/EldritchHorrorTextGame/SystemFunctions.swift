@@ -22,7 +22,6 @@ func rollDice() -> Int {
 }
 
 func rollManyDice(times: Int) -> [Int] {
-    //TODO: need a func where amount of Dice is equal of times
 
     print("Rolling dice " + String(repeating: "🎲", count: times), terminator: "")
     for _ in 1...3 {

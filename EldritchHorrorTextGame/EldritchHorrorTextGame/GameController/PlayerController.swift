@@ -69,7 +69,7 @@ class PlayerController {
     func getItemsWithActions(gamePhase: GamePhase) -> [Item] {
         var tempActions: [Item] = []
         for item in allItemsForGame {
-            print(item.phaseUsage ?? "NO PHASE USAGE")
+            
             if item.action != nil && !item.usedThisRound && item.action?.typeAction == gamePhase{
                 tempActions.append(item)
             }

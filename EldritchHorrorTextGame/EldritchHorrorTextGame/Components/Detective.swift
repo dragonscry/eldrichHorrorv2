@@ -42,19 +42,58 @@ struct BuyItemAction: Action {
     var description = "Player Buys item from shop"
     
     func execute(for player: PlayerController) {
-        
-        var market = player.allItemsForGame.shuffled().prefix(4)
+        var market = Array(player.allItemsForGame.shuffled().prefix(4))
         
         let successResults = checkStats(stat: player.communication, for: player.successfullResults)
+        var points = successResults.1
         
-        print("You have \(successResults.0) points to use for buying an item.\n")
+        print("You have \(points) points to use for buying an item.\n")
         
-        for (index, item) in market.enumerated() {
-            print("\(index + 1). \(item.name) \(item.cost)")
+        while points > 0 {
+            print("Market items:")
+            for (index, item) in market.enumerated() {
+                print("\(index + 1). \(item.name) - Cost: \(item.cost)")
+            }
+            print("Type 'info <number>' to get item details or 'buy <number>' to purchase an item. Type 'exit' to stop shopping.")
+            
+            if let input = readLine() {
+                let components = input.split(separator: " ")
+                
+                if components.count == 2 {
+                    let command = components[0]
+                    if let itemNumber = Int(components[1]), itemNumber > 0, itemNumber <= market.count {
+                        let selectedItem = market[itemNumber - 1]
+                        
+                        switch command.lowercased() {
+                        case "info":
+                            print("\n\(selectedItem.name): \(selectedItem.description)\n")
+                            
+                        case "buy":
+                            if points >= selectedItem.cost {
+                                points -= selectedItem.cost
+                                player.items.append(selectedItem)
+                                market.remove(at: itemNumber - 1)
+                                print("You bought \(selectedItem.name)! Remaining points: \(points)\n")
+                            } else {
+                                print("Not enough points to buy \(selectedItem.name).\n")
+                            }
+                            
+                        default:
+                            print("Unknown command.\n")
+                        }
+                    } else {
+                        print("Invalid item number.\n")
+                    }
+                } else if input.lowercased() == "exit" {
+                    print("Exiting market.\n")
+                    break
+                } else {
+                    print("Invalid command.\n")
+                }
+            }
         }
         
-        
-        print("\(player.detective?.name ?? "unknown") buys an item.")
+        print("Finished shopping.")
     }
 }
 

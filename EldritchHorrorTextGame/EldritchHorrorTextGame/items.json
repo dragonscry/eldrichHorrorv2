@@ -1,37 +1,114 @@
 [
-    {
-        "name": "Healing Potion",
-        "description": "Restores 5 health points.",
-        "type": "consumable",
-        "cost": 10,
-        "actionKey": "healAction",
-        "statBoosts": {
-            "health": 5
-        },
-        "phaseUsage": "hero",
-        "isSingleUse": true
+  {
+    "name": "Healing Potion",
+    "description": "Restores health instantly.",
+    "type": "Consumable",
+    "cost": 2,
+    "actionKey": "heal",
+    "statBoosts": null,
+    "phaseUsage": "All",
+    "isSingleUse": true
+  },
+  {
+    "name": "Ancient Tome",
+    "description": "Boosts knowledge during encounters.",
+    "type": "Artifact",
+    "cost": 1,
+    "actionKey": null,
+    "statBoosts": {
+      "knowledge": 2
     },
-    {
-        "name": "Strength Elixir",
-        "description": "Boosts strength in combat.",
-        "type": "consumable",
-        "cost": 20,
-        "actionKey": "strengthBoostAction",
-        "statBoosts": {
-            "strength": 2
-        },
-        "phaseUsage": "combat",
-        "isSingleUse": false
+    "phaseUsage": "Encounter",
+    "isSingleUse": false
+  },
+  {
+    "name": "Silver Dagger",
+    "description": "Effective against supernatural creatures.",
+    "type": "Weapon",
+    "cost": 3,
+    "actionKey": "attack",
+    "statBoosts": {
+      "strength": 1
     },
-    {
-        "name": "Magic Scroll",
-        "description": "Grants the ability to see hidden enemies.",
-        "type": "consumable",
-        "cost": 15,
-        "actionKey": "seeHiddenEnemiesAction",
-        "statBoosts": null,
-        "phaseUsage": "all",
-        "isSingleUse": false
-    }
+    "phaseUsage": "Combat",
+    "isSingleUse": false
+  },
+  {
+    "name": "Lucky Charm",
+    "description": "Increases luck across all phases.",
+    "type": "Trinket",
+    "cost": 2,
+    "actionKey": null,
+    "statBoosts": {
+      "luck": 1
+    },
+    "phaseUsage": "All",
+    "isSingleUse": false
+  },
+  {
+    "name": "Adrenaline Shot",
+    "description": "Boosts strength temporarily.",
+    "type": "Consumable",
+    "cost": 4,
+    "actionKey": "boostStrength",
+    "statBoosts": null,
+    "phaseUsage": "Combat",
+    "isSingleUse": true
+  },
+  {
+    "name": "Torch",
+    "description": "Illuminates dark places, improving awareness.",
+    "type": "Tool",
+    "cost": 3,
+    "actionKey": null,
+    "statBoosts": {
+      "awareness": 1
+    },
+    "phaseUsage": "Encounter",
+    "isSingleUse": false
+  },
+  {
+    "name": "Holy Water",
+    "description": "Repels evil and restores sanity.",
+    "type": "Consumable",
+    "cost": 2,
+    "actionKey": "restoreSanity",
+    "statBoosts": null,
+    "phaseUsage": "All",
+    "isSingleUse": true
+  },
+  {
+    "name": "Pocket Watch",
+    "description": "Helps control time, boosting reaction speed.",
+    "type": "Trinket",
+    "cost": 4,
+    "actionKey": null,
+    "statBoosts": {
+      "reaction": 1
+    },
+    "phaseUsage": "All",
+    "isSingleUse": false
+  },
+  {
+    "name": "Smoke Bomb",
+    "description": "Allows quick escape from battle.",
+    "type": "Consumable",
+    "cost": 2,
+    "actionKey": "escapeBattle",
+    "statBoosts": null,
+    "phaseUsage": "Combat",
+    "isSingleUse": true
+  },
+  {
+    "name": "Enchanted Amulet",
+    "description": "Protects against dark magic.",
+    "type": "Accessory",
+    "cost": 1,
+    "actionKey": null,
+    "statBoosts": {
+      "willpower": 2
+    },
+    "phaseUsage": "All",
+    "isSingleUse": false
+  }
 ]
-
