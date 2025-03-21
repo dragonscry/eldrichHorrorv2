@@ -32,6 +32,7 @@ struct RestAction: Action {
     
     
     func execute(for player: PlayerController) {
+        player.actionPerRound -= 1
         print("\(player.detective?.name ?? "unknown") rests and regains health and sanity.")
     }
 }
@@ -42,12 +43,29 @@ struct BuyItemAction: Action {
     var description = "Player Buys item from shop"
     
     func execute(for player: PlayerController) {
+        player.actionPerRound -= 1
         var market = Array(player.allItemsForGame.shuffled().prefix(4))
         
         let successResults = checkStats(stat: player.communication, for: player.successfullResults)
         var points = successResults.1
         
         print("You have \(points) points to use for buying an item.\n")
+        
+        while player.resource > 0 {
+            print("Do you want to use your resource to buy an item? (y/n)")
+            
+            if let input = readLine(), input == "y" {
+                UseResource().execute(for: player)
+                points += 1
+                print("You use resource and gain +1 point.\n")
+                print("You have \(points) points to use for buying an item.\n")
+            } else if let input = readLine(), input == "n" {
+                break
+            } else {
+                print("Invalid input, please try again.\n")
+            }
+            
+        }
         
         while points > 0 {
             print("Market items:")
@@ -98,6 +116,7 @@ struct BuyItemAction: Action {
 }
 
 struct PrepareConcetration: Action {
+    
     var name = "Prepare Concetration"
     
     var description = "Increase player's concetration by 1"
@@ -105,6 +124,7 @@ struct PrepareConcetration: Action {
     var typeAction = GamePhase.hero
     
     func execute(for player: PlayerController) {
+        player.actionPerRound -= 1
         if player.concetration >= 2 {
             print("You have maximum concetration now!")
         } else {
@@ -122,10 +142,12 @@ struct PrepareResource: Action {
     var typeAction = GamePhase.hero
     
     func execute(for player: PlayerController) {
+        player.actionPerRound -= 1
         if player.resource >= 2 {
             print("You have maximum resource now!")
         } else {
             player.resource += 1
+            print("You find resource. Now you have \(player.resource)")
         }
     }
 }
@@ -139,6 +161,7 @@ struct UseResource: Action {
     func execute(for player: PlayerController) {
         if player.resource > 0 {
             player.resource -= 1
+            print(player.resource > 0 ? "You used resource. Now you have \(player.resource)" : "You used resource. Now you have no resorce!")
         } else {
             print("You have no resource!")
         }
@@ -151,6 +174,7 @@ struct UseItem: Action {
     var description: String = "Open item bag and choose one item"
     
     func execute(for player: PlayerController) {
+        player.actionPerRound -= 1
         print("There is items in your bag with aviable actions")
     }
     

@@ -6,14 +6,26 @@
 //
 
 import Foundation
+import Darwin
 
 func printTextWithDelay(_ text: String, delay: TimeInterval = 0.5) {
+    // Disable terminal input echo
+    var term = termios()
+    tcgetattr(STDIN_FILENO, &term)
+    term.c_lflag &= ~UInt(ECHO | ICANON)
+    tcsetattr(STDIN_FILENO, TCSANOW, &term)
+    
+    // Print text with delay
     for char in text {
         print(char, terminator: "")
         fflush(stdout)
-        usleep(50_000)
+        usleep(10_000)
     }
     print() // Move to the next line after completion
+    
+    // Enable terminal input echo again
+    term.c_lflag |= UInt(ECHO | ICANON)
+    tcsetattr(STDIN_FILENO, TCSANOW, &term)
 }
 
 func rollDice() -> Int {

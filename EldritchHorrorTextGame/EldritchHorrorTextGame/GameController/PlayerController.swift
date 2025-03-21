@@ -32,6 +32,8 @@ class PlayerController {
     var strenght = 0
     var will = 0
     
+    var actionPerRound: Int = 2
+    
     var successfullResults = [5,6]
     
     //placeholder for territoty

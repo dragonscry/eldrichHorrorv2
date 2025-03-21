@@ -94,7 +94,7 @@ while gameController.roundCounter < 11 {
     
     //second action
     gameController.selectAction(for: playerController)
-    
+
     //third action
     if playerController.territory?.monsters.count ?? 0 > 0 {
         gameController.combat()

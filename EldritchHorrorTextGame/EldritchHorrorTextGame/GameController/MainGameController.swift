@@ -23,9 +23,10 @@ class MainGameController {
     //what is round now
     var roundCounter = 1
     
+    
     var gamePhase: GamePhase = .hero
     
-    
+    //TODO: Update to make different places!
     func createPlaces() -> [Place] {
         let placeNames = ["Dark Alley", "Whispering Woods", "Abyssal Shore"]
         let placeTypes: [TerritoryType] = [.city, .forest, .sea]
@@ -62,28 +63,35 @@ class MainGameController {
             availableActions.append(UseItem())
         }
         
-        
-        print("\nChoose an action:")
-        for (index, action) in availableActions.enumerated() {
-            print("\(index + 1). \(action.name)")
-        }
-        
-        print("\nEnter the number of your action:")
-        
-        if let input = readLine(), let choice = Int(input),
-           choice > 0, choice <= availableActions.count {
-            let selectedAction = availableActions[choice - 1]
-            if selectedAction.name == "Use Item" {
-                selectedAction.execute(for: player)
-                player.selectItemAction(for: aviableItems)
-            } else {
-                selectedAction.execute(for: player)
+        while player.actionPerRound > 0 {
+            print("You can make \(player.actionPerRound) action(s)!")
+            
+            
+            print("\nChoose an action:")
+            for (index, action) in availableActions.enumerated() {
+                print("\(index + 1). \(action.name)")
             }
             
-        } else {
-            print("Invalid choice. Try again.")
-            selectAction(for: player)
+            print("\nEnter the number of your action:")
+            
+            if let input = readLine(), let choice = Int(input),
+               choice > 0, choice <= availableActions.count {
+                let selectedAction = availableActions[choice - 1]
+                if selectedAction.name == "Use Item" {
+                    selectedAction.execute(for: player)
+                    player.selectItemAction(for: aviableItems)
+                    availableActions.remove(at: choice - 1)
+                } else {
+                    selectedAction.execute(for: player)
+                    availableActions.remove(at: choice - 1)
+                }
+                
+            } else {
+                print("Invalid choice. Try again.")
+                continue
+            }
         }
+
     }
     
     
