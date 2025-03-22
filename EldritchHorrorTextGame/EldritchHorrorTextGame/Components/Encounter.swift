@@ -13,4 +13,6 @@ struct EncounterTerritory {
     let difficulty: Int
     let successText: String
     let failureText: String
+    let successAction: String
+    let failedAction: String
 }

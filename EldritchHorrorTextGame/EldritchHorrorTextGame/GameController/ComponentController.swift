@@ -13,7 +13,7 @@ class ComponentController {
     
     let myths: [String]
     
-    let monsters: [String]
+    let monsters: [Monster]
     
 //    let bosses: [String]
     
@@ -25,10 +25,10 @@ class ComponentController {
     
 //    let artifacts: [String]
     
-    init(myths: [String], monsters: [String]) {
+    init(myths: [String]) {
         self.detectives = Bundle.main.decode(from: "detective") ?? []
         self.myths = myths
-        self.monsters = monsters
+        self.monsters = Bundle.main.decode(from: "monsters") ?? []
         //self.bosses = bosses
         self.rawItems = Bundle.main.decode(from: "items") ?? []
 //        self.spells = spells

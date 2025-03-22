@@ -8,13 +8,13 @@
 import Foundation
 
 //struct for Monsters
-struct Monster {
+struct Monster: Codable {
     let name: String
-//    var health: Int
-//    let damage: Int
-//    let brainDamage: Int
-//    let damageModifier: Int
-//    let brainModifier: Int
+    var health: Int
+    let healthDamage: Int
+    let brainDamage: Int
+    let healthDamageModifier: Int
+    let brainDamageModifier: Int
 }
 
 

@@ -20,7 +20,8 @@ var playerController = PlayerController()
 var territories : [Place] = []
 
 //Detectives from JSON to Detective structure
-var componentController = ComponentController(myths: [""], monsters: [""])
+var componentController = ComponentController(myths: [""])
+print("MONSTERS \(componentController.monsters)")
 componentController.downloadItems()
 playerController.updateWithItems(items: componentController.items)
 

@@ -26,7 +26,6 @@ class MainGameController {
     
     var gamePhase: GamePhase = .hero
     
-    //TODO: Update to make different places!
     func createPlaces() -> [Place] {
         let placeNames = ["Dark Alley", "Whispering Woods", "Abyssal Shore"]
         let placeTypes: [TerritoryType] = [.city, .forest, .sea]
@@ -37,7 +36,7 @@ class MainGameController {
             let hasPortal = Int.random(in: 1...100) <= portalChance
             let hasMonster = Int.random(in: 1...100) <= monsterChance
             
-            let monsters: [Monster] = hasMonster ? [Monster(name: "Horrific Spawn")] : []
+            let monsters: [Monster] = []
             
             let place = Place(
                 name: placeNames[i],
@@ -96,7 +95,11 @@ class MainGameController {
     
     
     
-    func combat(){}
+    func combat(monsters: [Monster], player: PlayerController){
+        gamePhase = .combat
+        
+        
+    }
     
     func encounter(){}
 }

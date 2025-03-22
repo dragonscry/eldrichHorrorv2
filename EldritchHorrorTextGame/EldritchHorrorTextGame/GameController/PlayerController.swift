@@ -115,4 +115,22 @@ class PlayerController {
         }
     }
     
+    func totalStatValue(for stat: String, player: PlayerController) -> Int {
+        let baseValue: Int
+        switch stat.lowercased() {
+        case "knowledge": baseValue = player.knowledge
+        case "communication": baseValue = player.communication
+        case "tention": baseValue = player.tention
+        case "strenght": baseValue = player.strenght
+        case "will": baseValue = player.will
+        default: return 0
+        }
+        
+        let maxBoost = player.items
+            .compactMap { $0.statBoosts?[stat] }
+            .max() ?? 0
+        
+        return baseValue + maxBoost
+    }
+    
 }

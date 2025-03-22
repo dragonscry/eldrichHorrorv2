@@ -10,6 +10,7 @@ import Foundation
 struct Urls {
     static let detectiveRules = URL(fileURLWithPath: "/Users/denys/Desktop/games/eldrichHorrorv2/EldritchHorrorTextGame/EldritchHorrorTextGame/detective.json")
     static let itemsUrl = URL(fileURLWithPath: "/Users/denys/Desktop/games/eldrichHorrorv2/EldritchHorrorTextGame/EldritchHorrorTextGame/items.json")
+    static let monstersUrl = URL(fileURLWithPath: "/Users/denys/Desktop/games/eldrichHorrorv2/EldritchHorrorTextGame/EldritchHorrorTextGame/monsters.json")
     
     static func returnUrl(for fileName: String) -> URL {
         switch fileName {
@@ -17,6 +18,8 @@ struct Urls {
             return detectiveRules
         case "items":
             return itemsUrl
+        case "monsters":
+            return monstersUrl
         default:
             return URL(filePath: "/")
         }

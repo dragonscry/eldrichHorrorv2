@@ -1,0 +1,83 @@
+[
+  {
+    "name": "Shadow Fiend",
+    "health": 8,
+    "healthDamage": 3,
+    "brainDamage": 2,
+    "healthDamageModifier": 1,
+    "brainDamageModifier": 0
+  },
+  {
+    "name": "Nightmare Stalker",
+    "health": 6,
+    "healthDamage": 2,
+    "brainDamage": 4,
+    "healthDamageModifier": 0,
+    "brainDamageModifier": 1
+  },
+  {
+    "name": "Plague Ghoul",
+    "health": 10,
+    "healthDamage": 4,
+    "brainDamage": 1,
+    "healthDamageModifier": 2,
+    "brainDamageModifier": 0
+  },
+  {
+    "name": "Eldritch Horror",
+    "health": 12,
+    "healthDamage": 5,
+    "brainDamage": 5,
+    "healthDamageModifier": 3,
+    "brainDamageModifier": 3
+  },
+  {
+    "name": "Wailing Banshee",
+    "health": 5,
+    "healthDamage": 1,
+    "brainDamage": 3,
+    "healthDamageModifier": 0,
+    "brainDamageModifier": 2
+  },
+  {
+    "name": "Cursed Revenant",
+    "health": 7,
+    "healthDamage": 3,
+    "brainDamage": 2,
+    "healthDamageModifier": 1,
+    "brainDamageModifier": 1
+  },
+  {
+    "name": "Bloodthirsty Wraith",
+    "health": 9,
+    "healthDamage": 4,
+    "brainDamage": 2,
+    "healthDamageModifier": 2,
+    "brainDamageModifier": 0
+  },
+  {
+    "name": "Abyssal Spawn",
+    "health": 11,
+    "healthDamage": 5,
+    "brainDamage": 3,
+    "healthDamageModifier": 2,
+    "brainDamageModifier": 1
+  },
+  {
+    "name": "Soul Devourer",
+    "health": 13,
+    "healthDamage": 6,
+    "brainDamage": 4,
+    "healthDamageModifier": 3,
+    "brainDamageModifier": 2
+  },
+  {
+    "name": "Voidwalker",
+    "health": 15,
+    "healthDamage": 7,
+    "brainDamage": 5,
+    "healthDamageModifier": 4,
+    "brainDamageModifier": 3
+  }
+]
+
