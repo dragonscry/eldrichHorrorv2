@@ -69,7 +69,7 @@ while gameController.roundCounter < 11 {
     print("Select territory where you want to go?")
     
     //TODO: now its placeholder
-    territories = gameController.createPlaces()
+    territories = gameController.createPlaces(monsters: componentController.monsters)
     
     while !gameController.playerSelectedTerritory {
         for i in 0..<territories.count {
@@ -102,12 +102,13 @@ while gameController.roundCounter < 11 {
     } else {
         gameController.encounter()
     }
+    
     //myth action
     print("MYTH")
     
+    gameController.roundCounter += 1
+    
 }
-
-print("Time to fight with BOSS!!!")
 
 
 

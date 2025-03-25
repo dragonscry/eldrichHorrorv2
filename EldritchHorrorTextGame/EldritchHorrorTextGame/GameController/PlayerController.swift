@@ -36,6 +36,8 @@ class PlayerController {
     
     var successfullResults = [5,6]
     
+    var countOfSuccessfullResults: Int = 0
+    
     //placeholder for territoty
     var territory: Place? = nil
     

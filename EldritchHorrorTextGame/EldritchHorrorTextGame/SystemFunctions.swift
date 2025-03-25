@@ -46,12 +46,11 @@ func rollManyDice(times: Int) -> [Int] {
     for _ in 1...times {
         tempRolls.append(rollDice())
     }
-    
+    print("RESULTS: \(tempRolls)")
     return tempRolls
 }
 
 func getSuccessfullResultsCount(from rolls: [Int], playerSuccessfullResults results: [Int]) -> Int {
-    print("RESULTS: \(rolls)")
     
     var tempResult = 0
     
@@ -63,22 +62,24 @@ func getSuccessfullResultsCount(from rolls: [Int], playerSuccessfullResults resu
     return tempResult
 }
 
-func checkStats(stat: String, for player: PlayerController) -> (Bool, Int) {
-    var results = rollManyDice(times: player.totalStatValue(for: stat, player: player))
+func checkStats(howManyRollsForStat: Int, for player: PlayerController) -> (Bool, Int) {
+    var results = rollManyDice(times: howManyRollsForStat)
     
     while player.concetration > 0 {
-            print("You have \(player.concetration) concentration left. Use concentration to add a success? (yes/no)")
+            print("You have \(player.concetration) concentration left. Use concentration to add 1 roll? (yes/no)")
             
             if let input = readLine()?.lowercased(), input == "yes" {
                 results += rollManyDice(times: 1)
                 player.concetration -= 1
-                print("Added 1 success. Total results: \(results)")
-            } else {
+                print("You tried to add successfull results. Total results: \(results)")
+            } else if let input = readLine()?.lowercased(), input == "no" {
                 break
+            } else {
+                print("Invalid input, please try again.\n")
             }
         }
     
-    var successfullResults = getSuccessfullResultsCount(from: results, playerSuccessfullResults: player.successfullResults)
+    let successfullResults = getSuccessfullResultsCount(from: results, playerSuccessfullResults: player.successfullResults)
     
     if successfullResults > 0 {
         return (true, successfullResults)

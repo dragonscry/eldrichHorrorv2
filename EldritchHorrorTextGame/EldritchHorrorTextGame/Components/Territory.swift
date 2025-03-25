@@ -9,7 +9,7 @@ import Foundation
 
 
 //type of territory
-enum TerritoryType {
+enum TerritoryType: CaseIterable {
     case city, forest, sea
     
 }
