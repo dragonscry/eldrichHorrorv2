@@ -21,7 +21,7 @@ var territories : [Place] = []
 
 //Detectives from JSON to Detective structure
 var componentController = ComponentController(myths: [""])
-print("MONSTERS \(componentController.monsters)")
+
 componentController.downloadItems()
 playerController.updateWithItems(items: componentController.items)
 
@@ -98,7 +98,7 @@ while gameController.roundCounter < 11 {
 
     //third action
     if playerController.territory?.monsters.count ?? 0 > 0 {
-        gameController.combat()
+        gameController.combat(monsters: playerController.territory?.monsters ?? [], player: playerController)
     } else {
         gameController.encounter()
     }

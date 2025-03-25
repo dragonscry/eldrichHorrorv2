@@ -46,7 +46,7 @@ struct BuyItemAction: Action {
         player.actionPerRound -= 1
         var market = Array(player.allItemsForGame.shuffled().prefix(4))
         
-        let successResults = checkStats(stat: player.communication, for: player.successfullResults)
+        let successResults = checkStats(stat: "communication", for: player)
         var points = successResults.1
         
         print("You have \(points) points to use for buying an item.\n")
