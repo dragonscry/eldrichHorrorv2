@@ -181,9 +181,10 @@ class MainGameController {
                 var playersTotalStrength = player.totalStatValue(for: "strenght", player: player)
                 playersTotalStrength -= monster.healthDamageModifier
                 print("Checking Strength...")
-                let strenghtResults = checkStats(howManyRollsForStat: playersTotalWill, for: player)
+                let strenghtResults = checkStats(howManyRollsForStat: playersTotalStrength, for: player)
                 player.countOfSuccessfullResults = strenghtResults.1
                 print("You have total \(player.successfullResults) to hit monster")
+                selectAction(for: player)
                 
                 let monsterHealthDamage = strenghtResults.1 - monster.healthDamage
                 if monsterHealthDamage > 0 {
@@ -210,5 +211,13 @@ class MainGameController {
 
     }
     
-    func encounter(){}
+    func encounter(encounter: EncounterTerritory, player: PlayerController){
+        gamePhase = .encounter
+        print("You encounter with something!")
+        
+        print(encounter.story)
+        print("Checking your stat \(encounter.testStat)")
+        let countOfStat = max(1, player.totalStatValue(for: encounter.testStat, player: player) - encounter.difficulty)
+        var tempResults = checkStats(howManyRollsForStat: countOfStat, for: player)
+    }
 }

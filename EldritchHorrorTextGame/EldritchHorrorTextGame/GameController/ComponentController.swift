@@ -21,6 +21,9 @@ class ComponentController {
     
     var items: [Item] = []
     
+    var encounters: [EncounterTerritory] = []
+    var rawEncounters: [EncounterTerritoryRaw] = []
+    
 //    let spells: [String]
     
 //    let artifacts: [String]
@@ -31,6 +34,7 @@ class ComponentController {
         self.monsters = Bundle.main.decode(from: "monsters") ?? []
         //self.bosses = bosses
         self.rawItems = Bundle.main.decode(from: "items") ?? []
+        self.rawEncounters = Bundle.main.decode(from: "encounters") ?? []
 //        self.spells = spells
        // self.artifacts = artifacts
     }
@@ -54,6 +58,25 @@ class ComponentController {
             }
             
             items.append(item)
+        }
+    }
+    
+    func downloadEncounters() {
+        for rawEncounter in rawEncounters {
+            var encounterTerritory = EncounterTerritory(
+                story: rawEncounter.story,
+                testStat: rawEncounter.testStat,
+                difficulty: rawEncounter.difficulty,
+                successText: rawEncounter.successText,
+                failureText: rawEncounter.failureText,
+                territoryType: rawEncounter.territoryType
+                )
+            
+            // Map action key to action
+            encounterTerritory.successAction = ActionManager.shared.getAction(for: rawEncounter.successAction)
+            encounterTerritory.failedAction = ActionManager.shared.getAction(for: rawEncounter.failedAction)
+            
+            encounters.append(encounterTerritory)
         }
     }
     

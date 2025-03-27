@@ -23,6 +23,8 @@ var territories : [Place] = []
 var componentController = ComponentController(myths: [""])
 
 componentController.downloadItems()
+componentController.downloadEncounters()
+
 playerController.updateWithItems(items: componentController.items)
 
 //Select Detective phase
@@ -100,7 +102,8 @@ while gameController.roundCounter < 11 {
     if playerController.territory?.monsters.count ?? 0 > 0 {
         gameController.combat(monsters: playerController.territory?.monsters ?? [], player: playerController)
     } else {
-        gameController.encounter()
+        let filteredEncounters = componentController.encounters.filter { $0.territoryType == playerController.territory?.type }
+        gameController.encounter(encounter: filteredEncounters.randomElement()!, player: playerController)
     }
     
     //myth action

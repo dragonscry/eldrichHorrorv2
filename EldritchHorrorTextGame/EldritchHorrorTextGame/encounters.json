@@ -1,0 +1,153 @@
+[
+  {
+    "story": "A shadowy figure approaches you in a dark alley, offering a mysterious package.",
+    "testStat": "communication",
+    "difficulty": 3,
+    "successText": "You negotiate well and gain useful information.",
+    "failureText": "The figure vanishes before you can learn anything.",
+    "successAction": "gain_clue",
+    "failedAction": "lose_money",
+    "territoryType": "city"
+  },
+  {
+    "story": "You overhear a secret conversation in the marketplace.",
+    "testStat": "knowledge",
+    "difficulty": 4,
+    "successText": "You decipher their cryptic language.",
+    "failureText": "You misunderstand and get strange looks.",
+    "successAction": "gain_clue",
+    "failedAction": "nothing",
+    "territoryType": "city"
+  },
+  {
+    "story": "A runaway thief crashes into you while escaping from guards.",
+    "testStat": "strength",
+    "difficulty": 5,
+    "successText": "You subdue him and receive a reward.",
+    "failureText": "He escapes, and the guards suspect you.",
+    "successAction": "gain_money",
+    "failedAction": "gain_tension",
+    "territoryType": "city"
+  },
+  {
+    "story": "A beggar warns you of an upcoming disaster.",
+    "testStat": "will",
+    "difficulty": 3,
+    "successText": "You heed his warning and prepare accordingly.",
+    "failureText": "You ignore him and later regret it.",
+    "successAction": "gain_protection",
+    "failedAction": "nothing",
+    "territoryType": "city"
+  },
+  {
+    "story": "A nobleman offers you a deal that sounds too good to be true.",
+    "testStat": "communication",
+    "difficulty": 6,
+    "successText": "You see through his trick and avoid a scam.",
+    "failureText": "You fall for the trap and lose resources.",
+    "successAction": "gain_money",
+    "failedAction": "lose_item",
+    "territoryType": "city"
+  },
+  {
+    "story": "Strange glowing eyes peer at you from the darkness.",
+    "testStat": "will",
+    "difficulty": 4,
+    "successText": "You hold your ground, and the presence fades.",
+    "failureText": "You flee in terror, losing your way.",
+    "successAction": "gain_toughness",
+    "failedAction": "gain_tension",
+    "territoryType": "forest"
+  },
+  {
+    "story": "A hidden path appears between the trees.",
+    "testStat": "knowledge",
+    "difficulty": 3,
+    "successText": "You follow it and discover a lost artifact.",
+    "failureText": "It leads you in circles, wasting time.",
+    "successAction": "gain_item",
+    "failedAction": "lose_time",
+    "territoryType": "forest"
+  },
+  {
+    "story": "A pack of wolves surrounds your camp.",
+    "testStat": "strength",
+    "difficulty": 5,
+    "successText": "You fend them off and claim their leader’s pelt.",
+    "failureText": "You suffer wounds and retreat.",
+    "successAction": "gain_item",
+    "failedAction": "lose_health",
+    "territoryType": "forest"
+  },
+  {
+    "story": "A whispering voice calls you deeper into the woods.",
+    "testStat": "will",
+    "difficulty": 6,
+    "successText": "You resist the temptation and find an ancient shrine.",
+    "failureText": "You become lost and disoriented.",
+    "successAction": "gain_clue",
+    "failedAction": "lose_time",
+    "territoryType": "forest"
+  },
+  {
+    "story": "A strange plant emits a sweet fragrance.",
+    "testStat": "knowledge",
+    "difficulty": 4,
+    "successText": "You identify it as a rare medicinal herb.",
+    "failureText": "It turns out to be toxic, and you fall ill.",
+    "successAction": "gain_item",
+    "failedAction": "lose_health",
+    "territoryType": "forest"
+  },
+  {
+    "story": "A shipwreck lies on the shore, half-buried in sand.",
+    "testStat": "strength",
+    "difficulty": 3,
+    "successText": "You manage to pry open a chest full of valuables.",
+    "failureText": "The ship collapses, crushing your hopes.",
+    "successAction": "gain_money",
+    "failedAction": "lose_item",
+    "territoryType": "sea"
+  },
+  {
+    "story": "A storm is approaching rapidly.",
+    "testStat": "will",
+    "difficulty": 5,
+    "successText": "You brace yourself and find shelter.",
+    "failureText": "The waves drag you under, leaving you gasping.",
+    "successAction": "gain_toughness",
+    "failedAction": "lose_health",
+    "territoryType": "sea"
+  },
+  {
+    "story": "You spot a mysterious island on the horizon.",
+    "testStat": "knowledge",
+    "difficulty": 4,
+    "successText": "You navigate carefully and uncover a lost temple.",
+    "failureText": "You get lost in the fog and return empty-handed.",
+    "successAction": "gain_clue",
+    "failedAction": "nothing",
+    "territoryType": "sea"
+  },
+  {
+    "story": "A massive sea creature surfaces near your boat.",
+    "testStat": "communication",
+    "difficulty": 6,
+    "successText": "You calm the beast and gain its blessing.",
+    "failureText": "It attacks, damaging your ship.",
+    "successAction": "gain_item",
+    "failedAction": "lose_health",
+    "territoryType": "sea"
+  },
+  {
+    "story": "An old sailor tells you a tale of hidden treasure.",
+    "testStat": "knowledge",
+    "difficulty": 3,
+    "successText": "You decipher his riddles and mark a location on your map.",
+    "failureText": "The tale was just drunken nonsense.",
+    "successAction": "gain_clue",
+    "failedAction": "nothing",
+    "territoryType": "sea"
+  }
+]
+
