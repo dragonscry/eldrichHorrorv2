@@ -16,7 +16,35 @@ struct Item {
     let statBoosts: [String: Int]?
     let phaseUsage: GamePhase?
     let isSingleUse: Bool
-    var usedThisRound: Bool = false  // Tracks if the item was used in the current round
+    var usedThisRound: Bool = false // Tracks if the item was used in the current round
+    
+    func itemDesctiption() {
+        print("Name: \(name)")
+        print("Description: \(description)")
+        print("Type: \(type)")
+        print("💰: \(cost)")
+        
+        if let action {
+            print("Action: \(action.description)")
+            print("Can be used in \(action.typeAction.description)")
+            
+        }
+        
+        if let statBoosts {
+            print("Stat boosts:")
+            for (stat, boost) in statBoosts {
+                print("\(stat): \(boost)")
+            }
+        }
+        
+        print("Can be used in \(phaseUsage?.description ?? "any phase")")
+        if isSingleUse {
+            print("Can be used just once")
+        } else {
+            print("Can be used once per round")
+        }
+        
+    }
 }
 
 struct RawItem: Decodable {

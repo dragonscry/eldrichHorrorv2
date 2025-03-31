@@ -22,6 +22,19 @@ struct Detective: Codable {
     //placeHolder
     let initialPlace: String
     let equipment: [String]
+    
+    func detectiveDescription() {
+        print("Name: \(name)")
+        print("Job: \(job)")
+        print("Description: \(description)")
+        print("❤️  : \(health)")
+        print("💙 : \(sanity)")
+        print("Knowledge(📖): \(knowledge)")
+        print("Communication(🤝): \(communication)")
+        print("Tention(👁️): \(tention)")
+        print("Strenght(💪): \(strenght)")
+        print("Will(🧠): \(will)")
+    }
 }
 
 //MARK: Player Actions

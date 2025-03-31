@@ -49,9 +49,7 @@ while playerController.detective == nil {
     if components.count == 2, components[0].lowercased() == "info", let number = Int(components[1]), number > 0, number <= componentController.detectives.count {
         // Show detective info
         let selectedDetective = componentController.detectives[number - 1]
-        print("Name: \(selectedDetective.name)")
-        print("Description: \(selectedDetective.description)")
-        print("")
+        selectedDetective.detectiveDescription()
     } else if let number = Int(input), number > 0, number <= componentController.detectives.count {
         // Select detective
         playerController.updateWithDetective(detective: componentController.detectives[number - 1])

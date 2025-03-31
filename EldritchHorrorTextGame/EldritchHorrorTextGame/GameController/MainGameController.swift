@@ -8,6 +8,19 @@
 
 enum GamePhase: String, Codable {
     case hero, encounter, combat, all
+    
+    var description: String {
+        switch self {
+        case .hero:
+            return "The hero prepares for the adventure, gathering resources and planning their next move."
+        case .encounter:
+            return "An encounter phase where unexpected events challenge the hero’s abilities."
+        case .combat:
+            return "A battle phase where the hero fights against enemies, testing their strength and skills."
+        case .all:
+            return "A phase that applies to all aspects of the game."
+        }
+    }
 }
 
 class MainGameController {
