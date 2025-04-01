@@ -47,6 +47,7 @@ struct Item {
     }
 }
 
+//needs to read items from json
 struct RawItem: Decodable {
     let name: String
     let description: String
