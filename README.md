@@ -21,7 +21,7 @@ Then game starts:
 
 3. Encounter or Fight with monster. If there is a monster you firstly fight with monsters. Then you encounter with place.
 
-4. At the end something happend and lopp repeat from first step.
+4. At the end something happend and loop repeat from first step.
 
 ## Future of repository
 
