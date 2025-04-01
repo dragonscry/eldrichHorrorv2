@@ -182,6 +182,7 @@ struct UseResource: Action {
     }
 }
 
+//action to use Item
 struct UseItem: Action {
     var name = "Use Item"
     var typeAction: GamePhase = .all
