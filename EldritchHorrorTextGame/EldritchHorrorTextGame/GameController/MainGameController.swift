@@ -129,6 +129,10 @@ class MainGameController {
             action.typeAction == self.gamePhase
         }
         
+        if player.territory?.type == .city {
+            availableActions.append(BuyItemAction())
+        }
+        
         let aviableItems = player.getItemsWithActions(gamePhase: self.gamePhase)
         
         if !aviableItems.isEmpty {
@@ -180,7 +184,7 @@ class MainGameController {
             playersTotalWill -= monster.brainDamageModifier
             print("Checking Will...")
             let willResult = checkStats(howManyRollsForStat: playersTotalWill, for: player)
-            let monsterBrainDamage = willResult.1 - monster.brainDamage
+            let monsterBrainDamage = monster.brainDamage - willResult.1
             if monsterBrainDamage > 0 {
                 print("Player takes \(monsterBrainDamage)")
                 player.currentSanity -= monsterBrainDamage
@@ -196,16 +200,22 @@ class MainGameController {
                 print("Checking Strength...")
                 let strenghtResults = checkStats(howManyRollsForStat: playersTotalStrength, for: player)
                 player.countOfSuccessfullResults = strenghtResults.1
-                print("You have total \(player.successfullResults) to hit monster")
+                print("You have total \(player.countOfSuccessfullResults) to hit monster")
                 selectAction(for: player)
+                
+                let itemWithAction = player.getItemsWithActions(gamePhase: .combat)
+                if !itemWithAction.isEmpty {
+                    player.selectItemAction(for: itemWithAction)
+                }
                 
                 let monsterHealthDamage = strenghtResults.1 - monster.healthDamage
                 if monsterHealthDamage > 0 {
                     print("Player takes \(monsterHealthDamage)")
-                    player.currentSanity -= monsterHealthDamage
+                    player.currentHealth -= monsterHealthDamage
                     print("Player current health is \(player.currentHealth)")
+                    print("Player hit for \(strenghtResults.1)")
+                    currentMonster.health -= strenghtResults.1
                 } else {
-                    print("Players health is safe!")
                     print("Player hit for \(strenghtResults.1)")
                     currentMonster.health -= strenghtResults.1
                 }
@@ -217,11 +227,7 @@ class MainGameController {
                 }
             }
             
-            
-
         }
-            
-
     }
     
     func encounter(encounter: EncounterTerritory, player: PlayerController){
@@ -231,6 +237,33 @@ class MainGameController {
         print(encounter.story)
         print("Checking your stat \(encounter.testStat)")
         let countOfStat = max(1, player.totalStatValue(for: encounter.testStat, player: player) - encounter.difficulty)
-        var tempResults = checkStats(howManyRollsForStat: countOfStat, for: player)
+        var results = checkStats(howManyRollsForStat: countOfStat, for: player)
+        
+        if results.0 {
+            print(encounter.successText)
+            encounter.successAction?.execute(for: player)
+        } else {
+            let itemWithAction = player.getItemsWithActions(gamePhase: .encounter)
+            if !itemWithAction.isEmpty {
+                print("Do you want to use item? (y/n)")
+                let input = readLine()?.lowercased()
+                if input == "y" {
+                    player.selectItemAction(for: itemWithAction)
+                } else if input == "n" {
+                    print("Item will not be used")
+                } else {
+                    print("Invalid input. Item will not be used")
+                }
+            }
+            
+            let newResult = getSuccessfullResultsCount(from: player.currentResults, playerSuccessfullResults: player.successfullResults)
+            if newResult > 0 {
+                printTextWithDelay(encounter.successText)
+                encounter.successAction?.execute(for: player)
+            } else {
+                printTextWithDelay(encounter.failureText)
+                encounter.failedAction?.execute(for: player)
+            }
+        }
     }
 }

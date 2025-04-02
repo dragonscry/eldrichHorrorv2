@@ -66,19 +66,19 @@ func checkStats(howManyRollsForStat: Int, for player: PlayerController) -> (Bool
     var results = rollManyDice(times: howManyRollsForStat)
     
     while player.concetration > 0 {
-            print("You have \(player.concetration) concentration left. Use concentration to add 1 roll? (yes/no)")
-            
-            if let input = readLine()?.lowercased(), input == "yes" {
+            print("You have \(player.concetration) concentration left. Use concentration to add 1 roll? (y/n)")
+            let input = readLine()?.lowercased()
+            if  input == "y" {
                 results += rollManyDice(times: 1)
                 player.concetration -= 1
                 print("You tried to add successfull results. Total results: \(results)")
-            } else if let input = readLine()?.lowercased(), input == "no" {
+            } else if input == "n" {
                 break
             } else {
                 print("Invalid input, please try again.\n")
             }
         }
-    
+    player.currentResults = results
     let successfullResults = getSuccessfullResultsCount(from: results, playerSuccessfullResults: player.successfullResults)
     
     if successfullResults > 0 {
@@ -86,4 +86,12 @@ func checkStats(howManyRollsForStat: Int, for player: PlayerController) -> (Bool
     } else {
         return (false, 0)
     }
+}
+
+func endOfRound(player: PlayerController, gameController: MainGameController) {
+    player.actionPerRound = 2
+    player.countOfSuccessfullResults = 0
+    player.territory = nil
+    player.currentResults = []
+    gameController.playerSelectedTerritory = false
 }

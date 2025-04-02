@@ -71,17 +71,18 @@ class PlayerController {
     var actions = [Action]()
     
     func getItemsWithActions(gamePhase: GamePhase) -> [Item] {
-        var tempActions: [Item] = []
-        for item in allItemsForGame {
+        var tempItems: [Item] = []
+        for item in items {
             
             if item.action != nil && !item.usedThisRound && item.action?.typeAction == gamePhase{
-                tempActions.append(item)
+                tempItems.append(item)
             }
         }
-        return tempActions
+        return tempItems
     }
     
     func selectItemAction(for items: [Item]) {
+        
         // Display items with actions
         print("\nSelect an item to use:")
         for (index, item) in items.enumerated() {
@@ -95,16 +96,15 @@ class PlayerController {
             
             let selectedItem = items[choice - 1]
             
-            if let itemIndex = self.allItemsForGame.firstIndex(where: { $0.name == selectedItem.name }) {
+            if let itemIndex = self.items.firstIndex(where: { $0.name == selectedItem.name }) {
                 
                 // Execute item action
-                self.allItemsForGame[itemIndex].action?.execute(for: self)
+                self.items[itemIndex].action?.execute(for: self)
                 
                 // Handle single-use items
-                if self.allItemsForGame[itemIndex].isSingleUse {
-                    self.allItemsForGame.remove(at: itemIndex)
+                if self.items[itemIndex].isSingleUse {
+                    self.items.remove(at: itemIndex)
                     print("\(selectedItem.name) has been used and removed from your inventory.")
-                    print("THERE IS ALL PLAYER ITEMS: \(self.items)")
                 } else {
                     self.allItemsForGame[itemIndex].usedThisRound = true
                     print("\(selectedItem.name) has been used this round.")
@@ -113,7 +113,7 @@ class PlayerController {
             
         } else {
             print("Invalid choice. Try again.")
-            selectItemAction(for: items)  // Retry on invalid input
+            selectItemAction(for: items)
         }
     }
     

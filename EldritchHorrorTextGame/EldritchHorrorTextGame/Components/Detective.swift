@@ -105,6 +105,9 @@ struct BuyItemAction: Action {
                                 points -= selectedItem.cost
                                 player.items.append(selectedItem)
                                 market.remove(at: itemNumber - 1)
+                                if let itemIndex = player.allItemsForGame.firstIndex(where: { $0.name == selectedItem.name }) {
+                                    player.allItemsForGame.remove(at: itemIndex)
+                                }
                                 print("You bought \(selectedItem.name)! Remaining points: \(points)\n")
                             } else {
                                 print("Not enough points to buy \(selectedItem.name).\n")

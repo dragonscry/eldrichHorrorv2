@@ -8,10 +8,10 @@
 import Foundation
 
 struct Urls {
-    static let detectiveRules = URL(fileURLWithPath: "/Users/denys/Desktop/games/eldrichHorrorv2/EldritchHorrorTextGame/EldritchHorrorTextGame/detective.json")
-    static let itemsUrl = URL(fileURLWithPath: "/Users/denys/Desktop/games/eldrichHorrorv2/EldritchHorrorTextGame/EldritchHorrorTextGame/items.json")
-    static let monstersUrl = URL(fileURLWithPath: "/Users/denys/Desktop/games/eldrichHorrorv2/EldritchHorrorTextGame/EldritchHorrorTextGame/monsters.json")
-    static let encountersUrl = URL(fileURLWithPath: "/Users/denys/Desktop/games/eldrichHorrorv2/EldritchHorrorTextGame/EldritchHorrorTextGame/encounters.json")
+    static let detectiveRules = URL(fileURLWithPath: "/Users/denismerkotun/Desktop/projects/eldrichHorrorv2/EldritchHorrorTextGame/EldritchHorrorTextGame/Resources/detective.json")
+    static let itemsUrl = URL(fileURLWithPath: "/Users/denismerkotun/Desktop/projects/eldrichHorrorv2/EldritchHorrorTextGame/EldritchHorrorTextGame/Resources/items.json")
+    static let monstersUrl = URL(fileURLWithPath: "/Users/denismerkotun/Desktop/projects/eldrichHorrorv2/EldritchHorrorTextGame/EldritchHorrorTextGame/Resources/monsters.json")
+    static let encountersUrl = URL(fileURLWithPath: "/Users/denismerkotun/Desktop/projects/eldrichHorrorv2/EldritchHorrorTextGame/EldritchHorrorTextGame/Resources/encounters.json")
     
     static func returnUrl(for fileName: String) -> URL {
         switch fileName {

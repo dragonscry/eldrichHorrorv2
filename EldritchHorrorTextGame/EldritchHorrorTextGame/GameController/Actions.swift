@@ -17,7 +17,6 @@ class ActionManager {
     
     let detectiveActions:[Action] = [
         RestAction(),
-        BuyItemAction(),
         PrepareResource(),
         PrepareConcetration()
     ]

@@ -109,6 +109,7 @@ while gameController.roundCounter < 11 {
     
     gameController.roundCounter += 1
     
+    endOfRound(player: playerController, gameController: gameController)
 }
 
 
