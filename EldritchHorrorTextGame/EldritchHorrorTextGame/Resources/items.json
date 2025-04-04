@@ -6,7 +6,7 @@
     "cost": 2,
     "actionKey": "heal",
     "statBoosts": null,
-    "phaseUsage": "All",
+    "phaseUsage": "all",
     "isSingleUse": true
   },
   {
@@ -16,9 +16,10 @@
     "cost": 1,
     "actionKey": null,
     "statBoosts": {
-      "knowledge": 2
+      "knowledge": 2,
+      "communication" : 2
     },
-    "phaseUsage": "Encounter",
+    "phaseUsage": "all",
     "isSingleUse": false
   },
   {
@@ -28,9 +29,9 @@
     "cost": 3,
     "actionKey": "attack",
     "statBoosts": {
-      "strength": 1
+      "strength": 5
     },
-    "phaseUsage": "Combat",
+    "phaseUsage": "combat",
     "isSingleUse": false
   },
   {
@@ -42,7 +43,7 @@
     "statBoosts": {
       "luck": 1
     },
-    "phaseUsage": "All",
+    "phaseUsage": "all",
     "isSingleUse": false
   },
   {
@@ -52,7 +53,7 @@
     "cost": 4,
     "actionKey": "boostStrength",
     "statBoosts": null,
-    "phaseUsage": "Combat",
+    "phaseUsage": "combat",
     "isSingleUse": true
   },
   {
@@ -64,7 +65,7 @@
     "statBoosts": {
       "awareness": 1
     },
-    "phaseUsage": "Encounter",
+    "phaseUsage": "encounter",
     "isSingleUse": false
   },
   {
@@ -74,7 +75,7 @@
     "cost": 2,
     "actionKey": "restoreSanity",
     "statBoosts": null,
-    "phaseUsage": "All",
+    "phaseUsage": "all",
     "isSingleUse": true
   },
   {
@@ -86,7 +87,7 @@
     "statBoosts": {
       "reaction": 1
     },
-    "phaseUsage": "All",
+    "phaseUsage": "all",
     "isSingleUse": false
   },
   {
@@ -96,7 +97,7 @@
     "cost": 2,
     "actionKey": "escapeBattle",
     "statBoosts": null,
-    "phaseUsage": "Combat",
+    "phaseUsage": "combat",
     "isSingleUse": true
   },
   {
@@ -108,7 +109,7 @@
     "statBoosts": {
       "willpower": 2
     },
-    "phaseUsage": "All",
+    "phaseUsage": "all",
     "isSingleUse": false
   }
 ]

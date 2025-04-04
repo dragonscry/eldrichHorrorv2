@@ -59,3 +59,19 @@ struct RawItem: Decodable {
     let phaseUsage: String? // Assuming GamePhase is a String enum for simplicity
     let isSingleUse: Bool
 }
+
+
+struct LuckyBuff: Action {
+    var name = "Lucky Buff"
+    
+    var description = "Now your success results can be 4"
+    
+    var typeAction = GamePhase.hero
+    
+    func execute(for player: PlayerController) {
+        print("You feel how you became lucy")
+        player.successfullResults.append(4)
+    }
+    
+    
+}

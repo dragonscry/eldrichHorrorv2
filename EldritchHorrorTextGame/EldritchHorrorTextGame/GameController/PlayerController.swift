@@ -60,6 +60,7 @@ class PlayerController {
     
     func updateWithItems(items: [Item]) {
         self.allItemsForGame = items
+        self.items = items
     }
     
     var currentResults = [Int]()
@@ -74,50 +75,14 @@ class PlayerController {
         var tempItems: [Item] = []
         for item in items {
             
-            if item.action != nil && !item.usedThisRound && item.action?.typeAction == gamePhase{
+            if item.action != nil && !item.usedThisRound && item.action?.typeAction == gamePhase || item.action?.typeAction == .all{
                 tempItems.append(item)
             }
         }
         return tempItems
     }
     
-    func selectItemAction(for items: [Item]) {
-        
-        // Display items with actions
-        print("\nSelect an item to use:")
-        for (index, item) in items.enumerated() {
-            print("\(index + 1). \(item.name) - \(item.action?.name ?? "No action")")
-        }
-        
-        // Read user input
-        print("\nEnter the number of the item to use:")
-        if let input = readLine(), let choice = Int(input),
-           choice > 0, choice <= items.count {
-            
-            let selectedItem = items[choice - 1]
-            
-            if let itemIndex = self.items.firstIndex(where: { $0.name == selectedItem.name }) {
-                
-                // Execute item action
-                self.items[itemIndex].action?.execute(for: self)
-                
-                // Handle single-use items
-                if self.items[itemIndex].isSingleUse {
-                    self.items.remove(at: itemIndex)
-                    print("\(selectedItem.name) has been used and removed from your inventory.")
-                } else {
-                    self.allItemsForGame[itemIndex].usedThisRound = true
-                    print("\(selectedItem.name) has been used this round.")
-                }
-            }
-            
-        } else {
-            print("Invalid choice. Try again.")
-            selectItemAction(for: items)
-        }
-    }
-    
-    func totalStatValue(for stat: String, player: PlayerController) -> Int {
+    func totalStatValue(for stat: String, player: PlayerController, gamePhase: GamePhase) -> Int {
         let baseValue: Int
         switch stat.lowercased() {
         case "knowledge": baseValue = player.knowledge
@@ -129,9 +94,10 @@ class PlayerController {
         }
         
         let maxBoost = player.items
+            .filter { $0.phaseUsage == gamePhase || $0.phaseUsage == .all }
             .compactMap { $0.statBoosts?[stat] }
             .max() ?? 0
-        
+        print("Your total stat is \(baseValue) + \(maxBoost)")
         return baseValue + maxBoost
     }
     

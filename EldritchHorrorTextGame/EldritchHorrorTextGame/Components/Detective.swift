@@ -46,7 +46,9 @@ struct RestAction: Action {
     
     func execute(for player: PlayerController) {
         player.actionPerRound -= 1
-        print("\(player.detective?.name ?? "unknown") rests and regains health and sanity.")
+        player.currentHealth = min(player.currentHealth + 1, player.maxHealth)
+        player.currentSanity = min(player.currentSanity + 1, player.currentSanity)
+        print("Detective has a good rest. You restore health and sanity.\nYou have \(player.currentHealth)❤️ and \(player.currentSanity)💙")
     }
 }
 
@@ -57,10 +59,11 @@ struct BuyItemAction: Action {
     
     func execute(for player: PlayerController) {
         player.actionPerRound -= 1
+        
+        //Create market
         var market = Array(player.allItemsForGame.shuffled().prefix(4))
         
-        let communitcationStat = player.totalStatValue(for: "communication", player: player)
-        let successResults = checkStats(howManyRollsForStat: communitcationStat, for: player)
+        let successResults = checkStats(stat: "communication", for: player, gamePhase: typeAction)
         var points = successResults.1
         
         print("You have \(points) points to use for buying an item.\n")
@@ -164,7 +167,7 @@ struct PrepareResource: Action {
             print("You have maximum resource now!")
         } else {
             player.resource += 1
-            print("You find resource. Now you have \(player.resource)")
+            print("You find resource. Now you have \(player.resource) resource")
         }
     }
 }
@@ -178,7 +181,7 @@ struct UseResource: Action {
     func execute(for player: PlayerController) {
         if player.resource > 0 {
             player.resource -= 1
-            print(player.resource > 0 ? "You used resource. Now you have \(player.resource)" : "You used resource. Now you have no resorce!")
+            print(player.resource > 0 ? "You used resource. Now you have \(player.resource) resource" : "You used resource. Now you have no resorce!")
         } else {
             print("You have no resource!")
         }
@@ -192,7 +195,6 @@ struct UseItem: Action {
     var description: String = "Open item bag and choose one item"
     
     func execute(for player: PlayerController) {
-        player.actionPerRound -= 1
         print("There is items in your bag with aviable actions")
     }
     

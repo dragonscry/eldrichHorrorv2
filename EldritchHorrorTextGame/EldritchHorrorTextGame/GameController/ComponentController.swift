@@ -15,7 +15,6 @@ class ComponentController {
     
     let monsters: [Monster]
     
-//    let bosses: [String]
     
     let rawItems: [RawItem]
     
@@ -23,10 +22,6 @@ class ComponentController {
     
     var encounters: [EncounterTerritory] = []
     var rawEncounters: [EncounterTerritoryRaw] = []
-    
-//    let spells: [String]
-    
-//    let artifacts: [String]
     
     init(myths: [String]) {
         self.detectives = Bundle.main.decode(from: "detective") ?? []
@@ -48,7 +43,7 @@ class ComponentController {
                 cost: rawItem.cost,
                 actionKey: rawItem.actionKey,
                 statBoosts: rawItem.statBoosts,
-                phaseUsage: GamePhase(rawValue: rawItem.phaseUsage ?? ""),
+                phaseUsage: GamePhase(rawValue: rawItem.phaseUsage ?? "all"),
                 isSingleUse: rawItem.isSingleUse
             )
             

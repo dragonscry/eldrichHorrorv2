@@ -94,7 +94,7 @@ while gameController.roundCounter < 11 {
     print("You go to \(playerController.territory?.name ?? "unknown")")
     
     //second action
-    gameController.selectAction(for: playerController)
+    selectAction(for: playerController, gamePhase: .hero)
 
     //third action
     if playerController.territory?.monsters.count ?? 0 > 0 {

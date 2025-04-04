@@ -31,7 +31,7 @@ class MainGameController {
     var portalChance = 20
     
     // how many percent monster appear in territory
-    var monsterChance = 10
+    var monsterChance = 100
     
     //what is round now
     var roundCounter = 1
@@ -98,92 +98,19 @@ class MainGameController {
         
         return places
     }
-
-    
-    func createPlaces() -> [Place] {
-        let placeNames = ["Dark Alley", "Whispering Woods", "Abyssal Shore"]
-        let placeTypes: [TerritoryType] = [.city, .forest, .sea]
-        
-        var places: [Place] = []
-        for i in 0..<3 {
-            let hasPortal = Int.random(in: 1...100) <= portalChance
-            let hasMonster = Int.random(in: 1...100) <= monsterChance
-            
-            let monsters: [Monster] = []
-            
-            let place = Place(
-                name: placeNames[i],
-                type: placeTypes[i],
-                monsters: monsters,
-                portal: hasPortal
-            )
-            
-            places.append(place)
-        }
-        
-        return places
-    }
-    
-    func selectAction(for player: PlayerController) {
-        var availableActions = player.getAvailableActions().filter { action in
-            action.typeAction == self.gamePhase
-        }
-        
-        if player.territory?.type == .city {
-            availableActions.append(BuyItemAction())
-        }
-        
-        let aviableItems = player.getItemsWithActions(gamePhase: self.gamePhase)
-        
-        if !aviableItems.isEmpty {
-            availableActions.append(UseItem())
-        }
-        
-        while player.actionPerRound > 0 {
-            print("You can make \(player.actionPerRound) action(s)!")
-            
-            
-            print("\nChoose an action:")
-            for (index, action) in availableActions.enumerated() {
-                print("\(index + 1). \(action.name)")
-            }
-            
-            print("\nEnter the number of your action:")
-            
-            if let input = readLine(), let choice = Int(input),
-               choice > 0, choice <= availableActions.count {
-                let selectedAction = availableActions[choice - 1]
-                if selectedAction.name == "Use Item" {
-                    selectedAction.execute(for: player)
-                    player.selectItemAction(for: aviableItems)
-                    availableActions.remove(at: choice - 1)
-                } else {
-                    selectedAction.execute(for: player)
-                    availableActions.remove(at: choice - 1)
-                }
-                
-            } else {
-                print("Invalid choice. Try again.")
-                continue
-            }
-        }
-
-    }
-    
-    
     
     func combat(monsters: [Monster], player: PlayerController) {
         gamePhase = .combat
         
         print("Combat begins!")
         
+        
         for monster in monsters {
+            print("You going to fight with \(monster.name)")
             var currentMonster = monster
             //Checking Will
-            var playersTotalWill = player.totalStatValue(for: "will", player: player)
-            playersTotalWill -= monster.brainDamageModifier
             print("Checking Will...")
-            let willResult = checkStats(howManyRollsForStat: playersTotalWill, for: player)
+            let willResult = checkStats(stat: "will", for: player, gamePhase: gamePhase, difficulty: monster.brainDamageModifier)
             let monsterBrainDamage = monster.brainDamage - willResult.1
             if monsterBrainDamage > 0 {
                 print("Player takes \(monsterBrainDamage)")
@@ -194,21 +121,13 @@ class MainGameController {
             }
             
             //Checking Strenght
-            while monster.health > 0 {
-                var playersTotalStrength = player.totalStatValue(for: "strenght", player: player)
-                playersTotalStrength -= monster.healthDamageModifier
+            while currentMonster.health > 0 {
                 print("Checking Strength...")
-                let strenghtResults = checkStats(howManyRollsForStat: playersTotalStrength, for: player)
+                let strenghtResults = checkStats(stat: "strength", for: player, gamePhase: gamePhase, difficulty: monster.healthDamageModifier)
                 player.countOfSuccessfullResults = strenghtResults.1
                 print("You have total \(player.countOfSuccessfullResults) to hit monster")
-                selectAction(for: player)
                 
-                let itemWithAction = player.getItemsWithActions(gamePhase: .combat)
-                if !itemWithAction.isEmpty {
-                    player.selectItemAction(for: itemWithAction)
-                }
-                
-                let monsterHealthDamage = strenghtResults.1 - monster.healthDamage
+                let monsterHealthDamage = monster.healthDamage - strenghtResults.1 
                 if monsterHealthDamage > 0 {
                     print("Player takes \(monsterHealthDamage)")
                     player.currentHealth -= monsterHealthDamage
@@ -236,34 +155,14 @@ class MainGameController {
         
         print(encounter.story)
         print("Checking your stat \(encounter.testStat)")
-        let countOfStat = max(1, player.totalStatValue(for: encounter.testStat, player: player) - encounter.difficulty)
-        var results = checkStats(howManyRollsForStat: countOfStat, for: player)
+        var results = checkStats(stat: encounter.testStat, for: player, gamePhase: gamePhase, difficulty: encounter.difficulty)
         
         if results.0 {
             print(encounter.successText)
             encounter.successAction?.execute(for: player)
         } else {
-            let itemWithAction = player.getItemsWithActions(gamePhase: .encounter)
-            if !itemWithAction.isEmpty {
-                print("Do you want to use item? (y/n)")
-                let input = readLine()?.lowercased()
-                if input == "y" {
-                    player.selectItemAction(for: itemWithAction)
-                } else if input == "n" {
-                    print("Item will not be used")
-                } else {
-                    print("Invalid input. Item will not be used")
-                }
-            }
-            
-            let newResult = getSuccessfullResultsCount(from: player.currentResults, playerSuccessfullResults: player.successfullResults)
-            if newResult > 0 {
-                printTextWithDelay(encounter.successText)
-                encounter.successAction?.execute(for: player)
-            } else {
-                printTextWithDelay(encounter.failureText)
-                encounter.failedAction?.execute(for: player)
-            }
+            printTextWithDelay(encounter.failureText)
+            encounter.failedAction?.execute(for: player)
         }
     }
 }

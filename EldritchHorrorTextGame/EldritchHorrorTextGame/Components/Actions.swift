@@ -8,7 +8,23 @@ class ActionManager {
     static let shared = ActionManager()
     
     //TODO: needs to provide action for unique actions or item action
-    private let actionMap: [String: Action] = ["healAction": RestAction()]
+    private let actionMap: [String: Action] = [
+        "heal": RestAction(),
+        "increaseStrength": IncreaseStrength(),
+        "decreaseStrength": DecreaseStrength(),
+        
+        "increaseKnowledge": IncreaseKnowledge(),
+        "decreaseKnowledge": DecreaseKnowledge(),
+        
+        "increaseCommunication": IncreaseCommunication(),
+        "decreaseCommunication": DecreaseCommunication(),
+        
+        "increaseTension": IncreaseTension(),
+        "decreaseTension": DecreaseTension(),
+        
+        "increaseWill": IncreaseWill(),
+        "decreaseWill": DecreaseWill()
+    ]
     
     func getAction(for key: String?) -> Action? {
         guard let key = key else { return nil }
